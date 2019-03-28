@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WordDisplay : MonoBehaviour
 {
    public Text text;
+   public float fallSpeed = 1f;
 
    public void SetWord(string word)
    {
@@ -18,7 +19,11 @@ public class WordDisplay : MonoBehaviour
         text.CrossFadeAlpha(0f, 1.0f, false);
         Debug.Log("b remove");
         Destroy(gameObject,1.0f);
-        
+     }
+
+   private void Update()
+   {
+        transform.Translate(0f, -fallSpeed * Time.deltaTime, 0);
    }
 
      

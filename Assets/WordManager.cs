@@ -7,12 +7,11 @@ public class WordManager : MonoBehaviour
 
     public List<Word> words;
     public WordSpawner wordSpawner;
+    private TouchScreenKeyboard keyboard;
 
-    private void Start()
+    public void Start()
     {
-        AddWord();
-        AddWord();
-        AddWord();        
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
     }
 
     public void AddWord()
