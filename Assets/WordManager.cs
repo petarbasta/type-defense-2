@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WordManager : MonoBehaviour
 {
@@ -11,14 +12,14 @@ public class WordManager : MonoBehaviour
 
     public void Start()
     {
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false);
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.ASCIICapable, false);
+        WordGenerator.LoadAllWords();
     }
 
     public void AddWord()
     {
         WordDisplay wordDisplay = wordSpawner.SpawnWord();
-        Word word = new Word(WordGenerator.GetRandomWord(), wordDisplay);
-        Debug.Log(word.word);
+        Word word = new Word(WordGenerator.GetRandomWord(3), wordDisplay);
         words.Add(word);
     }
 

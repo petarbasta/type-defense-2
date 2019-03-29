@@ -14,7 +14,6 @@ public class Word
     {
         word = _word;
         display = _display;
-
         display.SetWord(word);
     }
 

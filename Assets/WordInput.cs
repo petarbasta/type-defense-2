@@ -10,7 +10,6 @@ public class WordInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         foreach(char letter in Input.inputString)
         {
             //Finished Word
@@ -27,8 +26,6 @@ public class WordInput : MonoBehaviour
             {
                 currentWord += letter;
             }
-            Debug.Log(currentWord);
-
         }
     }
 }
