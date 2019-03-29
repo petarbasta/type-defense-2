@@ -23,7 +23,7 @@ public class WordManager : MonoBehaviour
         words.Add(word);
     }
 
-    public void TypeWord (string input)
+    public bool TypeWord (string input)
     {
         foreach(Word word in words)
         {
@@ -32,9 +32,10 @@ public class WordManager : MonoBehaviour
                 ScoreCounter.UpdateScore();
                 words.Remove(word);
                 word.RemoveWord();
-                break;
+                return true;
             }
         }
+        return false;
     }
 
 }
