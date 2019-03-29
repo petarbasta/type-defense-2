@@ -14,7 +14,7 @@ public class WordInput : MonoBehaviour
         foreach(char letter in Input.inputString)
         {
             //Finished Word
-            if (letter == '\r'){
+            if (letter == ' ' || letter == '\r'){
                 wordManager.TypeWord(currentWord);
                 currentWord = "";                
             }

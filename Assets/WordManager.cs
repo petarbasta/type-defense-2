@@ -11,7 +11,7 @@ public class WordManager : MonoBehaviour
 
     public void Start()
     {
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false);
     }
 
     public void AddWord()
@@ -28,6 +28,7 @@ public class WordManager : MonoBehaviour
         {
             if (string.Compare(input,word.word) == 0)
             {
+                ScoreCounter.scoreValue += 1;
                 words.Remove(word);
                 word.RemoveWord();
                 break;

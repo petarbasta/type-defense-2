@@ -17,8 +17,7 @@ public class WordDisplay : MonoBehaviour
     {
         text.color = Color.red;
         text.CrossFadeAlpha(0f, 1.0f, false);
-        Debug.Log("b remove");
-        Destroy(gameObject,1.0f);
+        Destroy(gameObject, 1.0f);
      }
 
    private void Update()
