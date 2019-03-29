@@ -6,17 +6,22 @@ using UnityEngine.UI;
 public class ScoreCounter : MonoBehaviour
 {
     public static int scoreValue = 0;
-    Text score;
+    public static Text score;
 
     // Start is called before the first frame update
     void Start()
     {
-        score = GetComponent<Text>();
+        Debug.Log("penis");
+        Debug.Log(ScoreCounter.scoreValue);
+
+        ScoreCounter.score = GetComponent<Text>();
+        ScoreCounter.score.text = "" + ScoreCounter.scoreValue;
     }
 
     // Update is called once per frame
-    void Update()
+    public static void UpdateScore()
     {
-        score.text = "" + scoreValue;
+        ScoreCounter.scoreValue += 1;
+        ScoreCounter.score.text = "" + ScoreCounter.scoreValue;
     }
 }

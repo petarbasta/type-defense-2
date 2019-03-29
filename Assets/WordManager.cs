@@ -28,7 +28,7 @@ public class WordManager : MonoBehaviour
         {
             if (string.Compare(input,word.word) == 0)
             {
-                ScoreCounter.scoreValue += 1;
+                ScoreCounter.UpdateScore();
                 words.Remove(word);
                 word.RemoveWord();
                 break;
