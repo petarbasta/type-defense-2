@@ -12,13 +12,8 @@ public class WordGenerator : MonoBehaviour
 
     public string GetRandomWord(int numberOfLetters)
     {
-        Debug.Log("rere");
-        Debug.Log(words[0][0].Length);
         int randomIndex = UnityEngine.Random.Range(0,words[numberOfLetters - minNumberOfLetters].Length);
-
         string randomWord = words[numberOfLetters - minNumberOfLetters][randomIndex];
-        Debug.Log(randomWord.Length);
-        Debug.Log(randomWord);
         return randomWord;
     }
 
@@ -27,7 +22,6 @@ public class WordGenerator : MonoBehaviour
 
         string fileName = numberOfLetters + " Letter Words.txt";
         string filePath = Path.Combine (Application.streamingAssetsPath + "/", fileName);
-        Debug.Log(filePath);
         string text;
 	
 		if (filePath.Contains ("://") || filePath.Contains (":///")) {
@@ -35,21 +29,11 @@ public class WordGenerator : MonoBehaviour
 			yield return www.Send ();
 			text = www.downloadHandler.text;
             string[] tempWords = text.Split(new string[] {"\n", "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
-            Debug.Log(tempWords.Length);
-            Debug.Log(tempWords[0]);
-            Debug.Log(tempWords[5]);
-            Debug.Log("nort");
             words[numberOfLetters - minNumberOfLetters] = tempWords;
 
 		} else {
-            Debug.Log("peep");
 			text = File.ReadAllText (filePath);
-            Debug.Log(text);
             string[] tempWords = text.Split(new string[] {"\n", "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
-            Debug.Log(tempWords.Length);
-            Debug.Log(tempWords[0]);
-            Debug.Log(tempWords[5]);
-            Debug.Log("nert");
             words[numberOfLetters - minNumberOfLetters] = tempWords;
 		}
     }

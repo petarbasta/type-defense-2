@@ -48,7 +48,7 @@ public class WordInput : MonoBehaviour
         }
 		else if (Application.platform == RuntimePlatform.Android)
         {
-            currentWord = keyboard.text;
+            currentWord = keyboard.text.ToLower();
             bool completed = wordManager.TypeWord(currentWord);
             if (completed) {
                 currentWord = "";
@@ -56,7 +56,5 @@ public class WordInput : MonoBehaviour
             }
             WordInput.word.text = currentWord;
         }
-        
-      
     }
 }
