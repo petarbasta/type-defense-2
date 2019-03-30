@@ -2,47 +2,64 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class WordGenerator : MonoBehaviour
 {
-    private static List<List<string>> wordList = new List<List<string>>();
-    public static int minNumberOfLetters = 3;
-    public static int maxNumberOfLetters = 4;
+    public int minNumberOfLetters = 3;
+    public int maxNumberOfLetters = 4;
+    public string[][] words;
 
-    public static string GetRandomWord(int numberOfLetters)
+    public string GetRandomWord(int numberOfLetters)
     {
-        int randomIndex = Random.Range(0,wordList[numberOfLetters - minNumberOfLetters].Count);
-        string randomWord = wordList[numberOfLetters - minNumberOfLetters][randomIndex];
+        Debug.Log("rere");
+        Debug.Log(words[0][0].Length);
+        int randomIndex = UnityEngine.Random.Range(0,words[numberOfLetters - minNumberOfLetters].Length);
+
+        string randomWord = words[numberOfLetters - minNumberOfLetters][randomIndex];
+        Debug.Log(randomWord.Length);
+        Debug.Log(randomWord);
         return randomWord;
     }
 
-    public static void LoadWords(int numberOfLetters)
+    public IEnumerator LoadWords(int numberOfLetters)
     {
-        string path = "Words/" + numberOfLetters + " Letter Words.txt";
 
-        StreamReader reader = new StreamReader(path); 
-        
-        List<string> words = new List<string>();
-        string line;
+        string fileName = numberOfLetters + " Letter Words.txt";
+        string filePath = Path.Combine (Application.streamingAssetsPath + "/", fileName);
+        Debug.Log(filePath);
+        string text;
+	
+		if (filePath.Contains ("://") || filePath.Contains (":///")) {
+			UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get (filePath);
+			yield return www.Send ();
+			text = www.downloadHandler.text;
+            string[] tempWords = text.Split(new string[] {"\n", "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+            Debug.Log(tempWords.Length);
+            Debug.Log(tempWords[0]);
+            Debug.Log(tempWords[5]);
+            Debug.Log("nort");
+            words[numberOfLetters - minNumberOfLetters] = tempWords;
 
-        do
-        {
-            line = reader.ReadLine();
-
-            if (line != null)
-            {
-                words.Add(line);
-            }
-        }
-        while (line != null);
-
-        wordList.Add(words);
+		} else {
+            Debug.Log("peep");
+			text = File.ReadAllText (filePath);
+            Debug.Log(text);
+            string[] tempWords = text.Split(new string[] {"\n", "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+            Debug.Log(tempWords.Length);
+            Debug.Log(tempWords[0]);
+            Debug.Log(tempWords[5]);
+            Debug.Log("nert");
+            words[numberOfLetters - minNumberOfLetters] = tempWords;
+		}
     }
 
-    public static void LoadAllWords(){
+    public void LoadAllWords()
+    {
+        words = new string[maxNumberOfLetters - minNumberOfLetters + 1][];
         for (int i = minNumberOfLetters; i <= maxNumberOfLetters; i++ )
         {
-            LoadWords(i);
+            StartCoroutine ("LoadWords", i);
         }
     }
 }

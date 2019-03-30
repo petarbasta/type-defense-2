@@ -5,21 +5,19 @@ using System;
 
 public class WordManager : MonoBehaviour
 {
-
     public List<Word> words;
     public WordSpawner wordSpawner;
-    private TouchScreenKeyboard keyboard;
+    public WordGenerator wordGenerator;
 
     public void Start()
     {
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.ASCIICapable, false);
-        WordGenerator.LoadAllWords();
+        wordGenerator.LoadAllWords();
     }
 
     public void AddWord()
     {
         WordDisplay wordDisplay = wordSpawner.SpawnWord();
-        Word word = new Word(WordGenerator.GetRandomWord(3), wordDisplay);
+        Word word = new Word(wordGenerator.GetRandomWord(3), wordDisplay);
         words.Add(word);
     }
 

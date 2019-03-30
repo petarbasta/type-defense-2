@@ -464,6 +464,7 @@ GameObject:
   - component: {fileID: 1848027004}
   - component: {fileID: 1848027007}
   - component: {fileID: 1848027008}
+  - component: {fileID: 1848027006}
   m_Layer: 0
   m_Name: WordManager
   m_TagString: Untagged
@@ -485,6 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   words: []
   wordSpawner: {fileID: 1848027007}
+  wordGenerator: {fileID: 1848027006}
 --- !u!4 &1848027005
 Transform:
   m_ObjectHideFlags: 0
@@ -499,6 +501,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1848027006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848027003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdbb93bb344cc443b3adf4ac7ce4ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minNumberOfLetters: 3
+  maxNumberOfLetters: 4
 --- !u!114 &1848027007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordManager: {fileID: 1848027004}
+  wordGenerator: {fileID: 1848027006}
   wordDelay: 1.5
   nextWordTime: 0
 --- !u!1 &1994152715

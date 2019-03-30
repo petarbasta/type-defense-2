@@ -8,8 +8,12 @@ public class WordInput : MonoBehaviour
     public string currentWord = "";
     public WordManager wordManager;
     public static Text word;
+    private TouchScreenKeyboard keyboard;
+
 
     public void Start(){
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.ASCIICapable, false);
+
         WordInput.word = GetComponent<Text>();
         WordInput.word.text = "Start Typing!";
     }
@@ -17,25 +21,42 @@ public class WordInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(char letter in Input.inputString)
+        if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            //Backspace
-            if (letter == '\b') {
-                if (currentWord.Length > 0){
-                    currentWord = currentWord.Remove(currentWord.Length -1);
-                }
-            }
-            //Add letter
-            else
+            foreach(char letter in Input.inputString)
             {
-                currentWord += letter;
-            }
+                //Backspace
+                if (letter == '\b') 
+                {
+                    if (currentWord.Length > 0){
+                        currentWord = currentWord.Remove(currentWord.Length -1);
+                    }
+                }
+                //Add letter
+                else
+                {
+                    currentWord += letter;
+                }
 
+                bool completed = wordManager.TypeWord(currentWord);
+                if (completed) 
+                {
+                    currentWord = "";       
+                }
+                WordInput.word.text = currentWord;
+            }
+        }
+		else if (Application.platform == RuntimePlatform.Android)
+        {
+            currentWord = keyboard.text;
             bool completed = wordManager.TypeWord(currentWord);
             if (completed) {
-                currentWord = "";       
+                currentWord = "";
+                keyboard.text = "";      
             }
             WordInput.word.text = currentWord;
         }
+        
+      
     }
 }

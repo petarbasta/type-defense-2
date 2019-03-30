@@ -61,6 +61,8 @@
      <Compile Include="Assets\WordManager.cs" />
      <Compile Include="Assets\WordSpawner.cs" />
      <Compile Include="Assets\WordTimer.cs" />
+     <None Include="Assets\StreamingAssets\3 Letter Words.txt" />
+     <None Include="Assets\StreamingAssets\4 Letter Words.txt" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/pbast/Documents/GitHub/type-defense-2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
