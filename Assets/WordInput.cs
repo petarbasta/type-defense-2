@@ -5,14 +5,23 @@ using UnityEngine.UI;
 
 public class WordInput : MonoBehaviour
 {
-    public string currentWord = "";
     public WordManager wordManager;
     public static Text word;
-    private TouchScreenKeyboard keyboard;
+    public InputField inputField;
+    public static int keyboardHeight = 0;
 
 
     public void Start(){
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.ASCIICapable, false);
+        inputField.ActivateInputField();
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            while (keyboardHeight == 0) 
+            {
+                keyboardHeight = GetKeyboardSize();
+            }       
+            Debug.Log(keyboardHeight);
+        }
+        
 
         WordInput.word = GetComponent<Text>();
         WordInput.word.text = "Start Typing!";
@@ -21,40 +30,41 @@ public class WordInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        inputField.ActivateInputField();
+
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            foreach(char letter in Input.inputString)
+            bool completed = wordManager.TypeWord(inputField.text.ToLower());
+            if (completed) 
             {
-                //Backspace
-                if (letter == '\b') 
-                {
-                    if (currentWord.Length > 0){
-                        currentWord = currentWord.Remove(currentWord.Length -1);
-                    }
-                }
-                //Add letter
-                else
-                {
-                    currentWord += letter;
-                }
-
-                bool completed = wordManager.TypeWord(currentWord);
-                if (completed) 
-                {
-                    currentWord = "";       
-                }
-                WordInput.word.text = currentWord;
+                inputField.text = "";
             }
+            WordInput.word.text = inputField.text;
         }
-		else if (Application.platform == RuntimePlatform.Android)
+        else if (Application.platform == RuntimePlatform.Android)
         {
-            currentWord = keyboard.text.ToLower();
-            bool completed = wordManager.TypeWord(currentWord);
-            if (completed) {
-                currentWord = "";
-                keyboard.text = "";      
+            bool completed = wordManager.TypeWord(inputField.text.ToLower());
+            if (completed) 
+            {
+                inputField.text = "";      
             }
-            WordInput.word.text = currentWord;
+            WordInput.word.text = inputField.text;
+        }
+    }
+
+    public int GetKeyboardSize()
+    {
+        using(AndroidJavaClass UnityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        {
+            AndroidJavaObject View = UnityClass.GetStatic<AndroidJavaObject>("currentActivity").Get<AndroidJavaObject>("mUnityPlayer").Call<AndroidJavaObject>("getView");
+
+            using(AndroidJavaObject Rct = new AndroidJavaObject("android.graphics.Rect"))
+            {
+                View.Call("getWindowVisibleDisplayFrame", Rct);
+
+                return Screen.height - Rct.Call<int>("height");
+            }
         }
     }
 }
