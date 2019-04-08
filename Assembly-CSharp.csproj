@@ -53,6 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\HealthManager.cs" />
      <Compile Include="Assets\ScoreCounter.cs" />
      <Compile Include="Assets\Word.cs" />
      <Compile Include="Assets\WordDisplay.cs" />

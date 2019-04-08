@@ -5,20 +5,24 @@ using UnityEngine.UI;
 
 public class ScoreCounter : MonoBehaviour
 {
-    public static int scoreValue = 0;
+    public static float startTime;
     public static Text score;
 
     // Start is called before the first frame update
     void Start()
     {
         ScoreCounter.score = GetComponent<Text>();
-        ScoreCounter.score.text = "" + ScoreCounter.scoreValue;
+        startTime = Time.time;
     }
 
     // Update is called once per frame
-    public static void UpdateScore()
+    void Update()
     {
-        ScoreCounter.scoreValue += 1;
-        ScoreCounter.score.text = "" + ScoreCounter.scoreValue;
+        float t = Time.time - startTime;
+
+        string minutes = ((int) t / 60).ToString();
+        string seconds = (t % 60).ToString("F2");
+
+        ScoreCounter.score.text = minutes + ":" + seconds;;
     }
 }

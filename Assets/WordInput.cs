@@ -13,15 +13,6 @@ public class WordInput : MonoBehaviour
 
     public void Start(){
         inputField.ActivateInputField();
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            while (keyboardHeight == 0) 
-            {
-                keyboardHeight = GetKeyboardSize();
-            }       
-            Debug.Log(keyboardHeight);
-        }
-        
 
         WordInput.word = GetComponent<Text>();
         WordInput.word.text = "Start Typing!";
@@ -48,22 +39,6 @@ public class WordInput : MonoBehaviour
             if (completed) 
             {
                 inputField.text = "";      
-            }
-            WordInput.word.text = inputField.text;
-        }
-    }
-
-    public int GetKeyboardSize()
-    {
-        using(AndroidJavaClass UnityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
-        {
-            AndroidJavaObject View = UnityClass.GetStatic<AndroidJavaObject>("currentActivity").Get<AndroidJavaObject>("mUnityPlayer").Call<AndroidJavaObject>("getView");
-
-            using(AndroidJavaObject Rct = new AndroidJavaObject("android.graphics.Rect"))
-            {
-                View.Call("getWindowVisibleDisplayFrame", Rct);
-
-                return Screen.height - Rct.Call<int>("height");
             }
         }
     }

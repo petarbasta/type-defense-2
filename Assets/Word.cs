@@ -21,6 +21,4 @@ public class Word
     {
         display.RemoveWord();
     }
-
-
 }
