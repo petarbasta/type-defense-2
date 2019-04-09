@@ -8,7 +8,7 @@ public class WordManager : MonoBehaviour
     public List<Word> words;
     public WordSpawner wordSpawner;
     public WordGenerator wordGenerator;
-    public static int redZoneHeight = 0;
+    public int redZoneHeight = 0;
 
     public void Start()
     {

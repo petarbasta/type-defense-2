@@ -5,19 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool gameHasEnded = false;
+    bool gameHasEnded = false;
 
-    public static void EndGame()
+    public void EndGame()
     {
         if (!gameHasEnded)
         {
             gameHasEnded = true;
             Debug.Log("Game Over");
-            GameManager.Restart();
+            var sc = FindObjectOfType<ScoreCounter>();
+            Debug.Log(sc.minutes * 60 + sc.seconds + sc.milliseconds / 100.0);
+            Restart();
         }
     }
 
-    public static void Restart()
+    public void Restart()
     {
         gameHasEnded = false;
         SceneManager.LoadScene("PlayScreen");

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WordSpawner : MonoBehaviour
 {
-
     public GameObject wordPrefab;
     public Transform wordCanvas;
 

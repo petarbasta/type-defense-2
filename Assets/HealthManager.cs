@@ -5,25 +5,26 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public static int healthPoints = 100;
-    public static Text health;
+    public GameManager gameManager;
+    public int healthPoints = 100;
+    public Text health;
 
     // Start is called before the first frame update
     void Start()
     {
-        HealthManager.health = GetComponent<Text>();
-        HealthManager.health.text = "HP: " + HealthManager.healthPoints;
+        health = GetComponent<Text>();
+        health.text = "HP: " + healthPoints;
     }
 
     // Update is called once per frame
-    public static void UpdateScore(int wordLength)
+    public void UpdateScore(int wordLength)
     {
-        HealthManager.healthPoints -= wordLength * 4;
-        if (HealthManager.healthPoints <= 0)
+        healthPoints -= wordLength * 4;
+        if (healthPoints <= 0)
         {   
-            HealthManager.healthPoints = 0;
-            GameManager.EndGame();
+            healthPoints = 0;
+            gameManager.EndGame();
         }
-        HealthManager.health.text = "HP: " + HealthManager.healthPoints;
+        health.text = "HP: " + healthPoints;
     }
 }

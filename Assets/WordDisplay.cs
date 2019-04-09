@@ -6,7 +6,15 @@ using UnityEngine.UI;
 public class WordDisplay : MonoBehaviour
 {
   public Text text;
-  public static float fallSpeed = 100;
+  public float fallSpeed = 100;
+  public WordManager wordManager;
+  public HealthManager healthManager;
+
+  public void Start()
+  {
+    wordManager = FindObjectOfType<WordManager>();
+    healthManager = FindObjectOfType<HealthManager>();
+  }
 
   public void SetWord(string word)
   {
@@ -22,13 +30,13 @@ public class WordDisplay : MonoBehaviour
 
   private void Update()
   {
-    if (gameObject.transform.position.y > WordManager.redZoneHeight)
+    if (gameObject.transform.position.y > wordManager.redZoneHeight)
     {
       transform.Translate(0f, -fallSpeed * Time.deltaTime, 0);
     }
     else
     {
-      HealthManager.UpdateScore(text.text.Length);
+      healthManager.UpdateScore(text.text.Length);
       Destroy(gameObject);
     }
 

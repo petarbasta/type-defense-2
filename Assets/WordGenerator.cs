@@ -7,7 +7,7 @@ using System;
 public class WordGenerator : MonoBehaviour
 {
     public int minNumberOfLetters = 3;
-    public int maxNumberOfLetters = 4;
+    private int maxNumberOfLetters = 8;
     public string[][] words;
 
     public int poolNumber = 0;
@@ -16,15 +16,19 @@ public class WordGenerator : MonoBehaviour
 
     public string GetRandomWord()
     {
-        Debug.Log(poolNumber);
         if (pools[poolNumber].Count <= 0)
         {
             poolNumber++;
+            Debug.Log("pool number " + poolNumber);
+
         }
 
         int randomIndex = UnityEngine.Random.Range(0,pools[poolNumber].Count);
         string randomWord = pools[poolNumber][randomIndex];
-        pools[poolNumber].Remove(randomWord);
+        if (poolNumber != 9)
+        {
+            pools[poolNumber].Remove(randomWord);
+        }
         return randomWord;
     }
 
@@ -62,8 +66,6 @@ public class WordGenerator : MonoBehaviour
     {
         List<string> poolZero = new List<string>();
         List<string> poolOne = new List<string>();
-
-        /*
         List<string> poolTwo = new List<string>();
         List<string> poolThree = new List<string>();
         List<string> poolFour = new List<string>();
@@ -71,10 +73,8 @@ public class WordGenerator : MonoBehaviour
         List<string> poolSix = new List<string>();
         List<string> poolSeven = new List<string>();
         List<string> poolEight = new List<string>();
-        List<string> poolOne = new List<string>();
         List<string> poolNine = new List<string>();
-        */
-
+        
         //Pool 0
         for (int i = 0; i < 4; i++){
             int randomIndex = UnityEngine.Random.Range(0,words[3 - minNumberOfLetters].Length);
@@ -95,7 +95,179 @@ public class WordGenerator : MonoBehaviour
             poolOne.Add(randomWord);
         }
 
+        //Pool 2
+        for (int i = 0; i < 4; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[3 - minNumberOfLetters].Length);
+            string randomWord = words[3 - minNumberOfLetters][randomIndex];
+            poolTwo.Add(randomWord);
+        }
+
+        for (int i = 0; i < 5; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[4 - minNumberOfLetters].Length);
+            string randomWord = words[4 - minNumberOfLetters][randomIndex];
+            poolTwo.Add(randomWord);
+        }
+
+        for (int i = 0; i < 4; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[5 - minNumberOfLetters].Length);
+            string randomWord = words[5 - minNumberOfLetters][randomIndex];
+            poolTwo.Add(randomWord);
+        }
+
+        //Pool 3
+        for (int i = 0; i < 3; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[3 - minNumberOfLetters].Length);
+            string randomWord = words[3 - minNumberOfLetters][randomIndex];
+            poolThree.Add(randomWord);
+        }
+
+        for (int i = 0; i < 3; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[4 - minNumberOfLetters].Length);
+            string randomWord = words[4 - minNumberOfLetters][randomIndex];
+            poolThree.Add(randomWord);
+        }
+
+        for (int i = 0; i < 4; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[5 - minNumberOfLetters].Length);
+            string randomWord = words[5 - minNumberOfLetters][randomIndex];
+            poolThree.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 4; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[6 - minNumberOfLetters].Length);
+            string randomWord = words[6 - minNumberOfLetters][randomIndex];
+            poolThree.Add(randomWord);
+        } 
+
+        //Pool 4
+        for (int i = 0; i < 2; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[3 - minNumberOfLetters].Length);
+            string randomWord = words[3 - minNumberOfLetters][randomIndex];
+            poolFour.Add(randomWord);
+        }
+
+        for (int i = 0; i < 3; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[4 - minNumberOfLetters].Length);
+            string randomWord = words[4 - minNumberOfLetters][randomIndex];
+            poolFour.Add(randomWord);
+        }
+
+        for (int i = 0; i < 5; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[5 - minNumberOfLetters].Length);
+            string randomWord = words[5 - minNumberOfLetters][randomIndex];
+            poolFour.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 6; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[6 - minNumberOfLetters].Length);
+            string randomWord = words[6 - minNumberOfLetters][randomIndex];
+            poolFour.Add(randomWord);
+        } 
+
+        //Pool 5
+        for (int i = 0; i < 3; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[4 - minNumberOfLetters].Length);
+            string randomWord = words[4 - minNumberOfLetters][randomIndex];
+            poolFive.Add(randomWord);
+        }
+
+        for (int i = 0; i < 5; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[5 - minNumberOfLetters].Length);
+            string randomWord = words[5 - minNumberOfLetters][randomIndex];
+            poolFive.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 8; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[6 - minNumberOfLetters].Length);
+            string randomWord = words[6 - minNumberOfLetters][randomIndex];
+            poolFive.Add(randomWord);
+        } 
+
+        //Pool 6
+        for (int i = 0; i < 3; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[4 - minNumberOfLetters].Length);
+            string randomWord = words[4 - minNumberOfLetters][randomIndex];
+            poolSix.Add(randomWord);
+        }
+
+        for (int i = 0; i < 4; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[5 - minNumberOfLetters].Length);
+            string randomWord = words[5 - minNumberOfLetters][randomIndex];
+            poolSix.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 5; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[6 - minNumberOfLetters].Length);
+            string randomWord = words[6 - minNumberOfLetters][randomIndex];
+            poolSix.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 7; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[7 - minNumberOfLetters].Length);
+            string randomWord = words[7 - minNumberOfLetters][randomIndex];
+            poolSix.Add(randomWord);
+        } 
+
+        //Pool 7
+        for (int i = 0; i < 7; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[5 - minNumberOfLetters].Length);
+            string randomWord = words[5 - minNumberOfLetters][randomIndex];
+            poolSeven.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 15; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[6 - minNumberOfLetters].Length);
+            string randomWord = words[6 - minNumberOfLetters][randomIndex];
+            poolSeven.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 15; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[7 - minNumberOfLetters].Length);
+            string randomWord = words[7 - minNumberOfLetters][randomIndex];
+            poolSeven.Add(randomWord);
+        } 
+
+        //Pool 8
+        for (int i = 0; i < 4; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[5 - minNumberOfLetters].Length);
+            string randomWord = words[5 - minNumberOfLetters][randomIndex];
+            poolEight.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 4; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[6 - minNumberOfLetters].Length);
+            string randomWord = words[6 - minNumberOfLetters][randomIndex];
+            poolEight.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 155; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[7 - minNumberOfLetters].Length);
+            string randomWord = words[7 - minNumberOfLetters][randomIndex];
+            poolEight.Add(randomWord);
+        } 
+
+        for (int i = 0; i < 20; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[8 - minNumberOfLetters].Length);
+            string randomWord = words[8 - minNumberOfLetters][randomIndex];
+            poolEight.Add(randomWord);
+        } 
+
+        //Pool 9
+        for (int i = 0; i < 500; i++){
+            int randomIndex = UnityEngine.Random.Range(0,words[8 - minNumberOfLetters].Length);
+            string randomWord = words[8 - minNumberOfLetters][randomIndex];
+            poolEight.Add(randomWord);
+        } 
+
         pools.Add(poolZero);
         pools.Add(poolOne);
+        pools.Add(poolTwo);
+        pools.Add(poolThree);
+        pools.Add(poolFour);
+        pools.Add(poolFive);
+        pools.Add(poolSix);
+        pools.Add(poolSeven);
+        pools.Add(poolEight);
+        pools.Add(poolNine);
     }
 }
