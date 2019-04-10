@@ -79,7 +79,7 @@ peanut
 instal
 mature
 belief
-Europe
+europe
 health
 branch
 bronze
@@ -280,7 +280,7 @@ church
 flight
 kidnap
 trance
-Sunday
+sorrid
 flawed
 supply
 parade
@@ -906,7 +906,7 @@ copper
 inside
 stream
 tenant
-Sunday
+savage
 castle
 suffer
 health

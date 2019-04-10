@@ -16,7 +16,6 @@ public class HealthManager : MonoBehaviour
         health.text = "HP: " + healthPoints;
     }
 
-    // Update is called once per frame
     public void UpdateScore(int wordLength)
     {
         healthPoints -= wordLength * 4;

@@ -226,7 +226,7 @@ screw
 spray
 witch
 swing
-Koran
+koran
 mercy
 tract
 scene
@@ -395,7 +395,7 @@ gloom
 penny
 panel
 slant
-X-ray
+x-ray
 shape
 owner
 blind
@@ -451,7 +451,7 @@ sweep
 stain
 smash
 spine
-Bible
+bible
 trade
 stage
 favor
@@ -499,7 +499,7 @@ utter
 crown
 torch
 breed
-Koran
+koran
 lobby
 onion
 clock
@@ -966,7 +966,7 @@ limit
 bowel
 total
 party
-Koran
+koran
 watch
 prove
 guest

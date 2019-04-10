@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
+    public bool generate = true;
+    public int waveSize = 6;
+    public int numberSpawned = 0;
+    public int numberCleared = 0;
 
     public void EndGame()
     {
@@ -13,8 +17,8 @@ public class GameManager : MonoBehaviour
         {
             gameHasEnded = true;
             Debug.Log("Game Over");
-            var sc = FindObjectOfType<ScoreCounter>();
-            Debug.Log(sc.minutes * 60 + sc.seconds + sc.milliseconds / 100.0);
+            var scoreCounter = FindObjectOfType<ScoreCounter>();
+            Debug.Log(scoreCounter.score);
             Restart();
         }
     }

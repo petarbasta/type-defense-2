@@ -8,17 +8,18 @@ public class WordManager : MonoBehaviour
     public List<Word> words;
     public WordSpawner wordSpawner;
     public WordGenerator wordGenerator;
-    public int redZoneHeight = 0;
+    public WordTimer wordTimer;
 
     public void Start()
     {
+        wordTimer = FindObjectOfType<WordTimer>();
         wordGenerator.LoadAllWords();
     }
 
     public void AddWord()
     {
         WordDisplay wordDisplay = wordSpawner.SpawnWord();
-        Word word = new Word(wordGenerator.GetRandomWord(), wordDisplay);
+        Word word = new Word(wordGenerator.GetRandomWord(), wordDisplay, wordTimer.wordDelay);
         words.Add(word);
     }
 
@@ -35,16 +36,4 @@ public class WordManager : MonoBehaviour
         }
         return false;
     }
-
-    public void OnGUI()
-    {
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            while (WordInput.keyboardHeight == 0)
-            {
-            }
-            redZoneHeight = WordInput.keyboardHeight;
-        }
-    }
-
 }

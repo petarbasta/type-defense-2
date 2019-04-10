@@ -6,18 +6,19 @@ using UnityEngine;
 public class Word
 {
     public string word;
-
     WordDisplay display;
+    public float initialWordDelay;
 
-    public Word (string _word, WordDisplay _display) 
+    public Word (string _word, WordDisplay _display, float _initialWordDelay) 
     {
         word = _word;
         display = _display;
+        initialWordDelay = _initialWordDelay;
         display.SetWord(word);
     }
 
     public void RemoveWord()
-    {
-        display.RemoveWord();
+    {   
+        display.RemoveWord(initialWordDelay);
     }
 }

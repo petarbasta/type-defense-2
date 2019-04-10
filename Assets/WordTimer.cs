@@ -6,17 +6,23 @@ public class WordTimer : MonoBehaviour
 {
     public WordManager wordManager;
     public WordGenerator wordGenerator;
+    public GameManager gameManager;
 
-    public float wordDelay = 1.5f;
+    public float wordDelay = 1.75f;
     public float nextWordTime = 0f;
 
-    private void Update()
+    void Start()
     {
-        if (Time.time >= nextWordTime && wordGenerator.words[0].Length > 0)
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
+    void Update()
+    {
+        if (Time.time >= nextWordTime && wordGenerator.words[0].Length > 0 && gameManager.generate)
         {
             wordManager.AddWord();
             nextWordTime = Time.time + wordDelay;
-            wordDelay *= .99f;
+            wordDelay *= .995f;
         }
     }
 }

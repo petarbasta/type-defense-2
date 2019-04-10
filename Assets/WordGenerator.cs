@@ -7,20 +7,30 @@ using System;
 public class WordGenerator : MonoBehaviour
 {
     public int minNumberOfLetters = 3;
-    private int maxNumberOfLetters = 8;
+    public int maxNumberOfLetters = 8;
     public string[][] words;
-
     public int poolNumber = 0;
-    public List<List<string>> pools = new List<List<string>>();
+    public List<List<string>> pools;
+    public GameManager gameManager;
 
+    void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     public string GetRandomWord()
-    {
+    {   
+        gameManager.numberSpawned++;
+
+        if (gameManager.numberSpawned == gameManager.waveSize)
+        {
+            gameManager.generate = false;
+        }
+
         if (pools[poolNumber].Count <= 0)
         {
             poolNumber++;
             Debug.Log("pool number " + poolNumber);
-
         }
 
         int randomIndex = UnityEngine.Random.Range(0,pools[poolNumber].Count);
@@ -32,20 +42,22 @@ public class WordGenerator : MonoBehaviour
         return randomWord;
     }
 
-    public IEnumerator LoadWords(int numberOfLetters)
+    public void LoadWords(int numberOfLetters)
     {
         string fileName = numberOfLetters + " Letter Words.txt";
         string filePath = Path.Combine (Application.streamingAssetsPath + "/", fileName);
         string text;
-	
-		if (filePath.Contains ("://") || filePath.Contains (":///")) {
-			UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get (filePath);
-			yield return www.Send ();
-			text = www.downloadHandler.text;
+   
+		if (Application.platform == RuntimePlatform.Android)
+        {
+            WWW reader = new WWW(filePath);
+            while (!reader.isDone) { }
+            text = reader.text;
             string[] tempWords = text.Split(new string[] {"\n", "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
             words[numberOfLetters - minNumberOfLetters] = tempWords;
-
-		} else {
+		} 
+        else 
+        {
 			text = File.ReadAllText (filePath);
             string[] tempWords = text.Split(new string[] {"\n", "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
             words[numberOfLetters - minNumberOfLetters] = tempWords;
@@ -54,6 +66,7 @@ public class WordGenerator : MonoBehaviour
 
     public void LoadAllWords()
     {
+        pools = new List<List<string>>();
         words = new string[maxNumberOfLetters - minNumberOfLetters + 1][];
         for (int i = minNumberOfLetters; i <= maxNumberOfLetters; i++ )
         {
@@ -74,7 +87,7 @@ public class WordGenerator : MonoBehaviour
         List<string> poolSeven = new List<string>();
         List<string> poolEight = new List<string>();
         List<string> poolNine = new List<string>();
-        
+
         //Pool 0
         for (int i = 0; i < 4; i++){
             int randomIndex = UnityEngine.Random.Range(0,words[3 - minNumberOfLetters].Length);
@@ -240,7 +253,7 @@ public class WordGenerator : MonoBehaviour
             poolEight.Add(randomWord);
         } 
 
-        for (int i = 0; i < 155; i++){
+        for (int i = 0; i < 15; i++){
             int randomIndex = UnityEngine.Random.Range(0,words[7 - minNumberOfLetters].Length);
             string randomWord = words[7 - minNumberOfLetters][randomIndex];
             poolEight.Add(randomWord);
@@ -256,7 +269,7 @@ public class WordGenerator : MonoBehaviour
         for (int i = 0; i < 500; i++){
             int randomIndex = UnityEngine.Random.Range(0,words[8 - minNumberOfLetters].Length);
             string randomWord = words[8 - minNumberOfLetters][randomIndex];
-            poolEight.Add(randomWord);
+            poolNine.Add(randomWord);
         } 
 
         pools.Add(poolZero);

@@ -5,48 +5,14 @@ using UnityEngine.UI;
 
 public class ScoreCounter : MonoBehaviour
 {
-    public float startTime;
-    public Text minutesAndSecondsTimer;
-    public Text millisecondsTimer;
-    public int minutes;
-    public int seconds;
-    public int milliseconds;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        startTime = Time.time;
-    }
+    public int score = 0;
+    public Text scoreText;
 
     // Update is called once per frame
-    void Update()
+    public void UpdateScore(string word, float initialWordDelay)
     {
-        float t = Time.time - startTime;
-
-        minutes = (int) t / 60;
-        float temp = t % 60;
-        seconds = (int) temp;
-        milliseconds = (int) ((temp - seconds) *100);
-
-        string zeroBuffer;
-        if (seconds < 10)
-        {
-            zeroBuffer = "0";
-        }
-        else
-        {
-            zeroBuffer = "";
-        }
-
-        if (minutes != 0)
-        {
-            minutesAndSecondsTimer.text = minutes.ToString() + ":" + zeroBuffer + seconds.ToString();
-        }
-        else 
-        {
-            minutesAndSecondsTimer.text = zeroBuffer + seconds.ToString();
-        }
-        millisecondsTimer.text = milliseconds.ToString("F0");
+        score += (int) ((float) word.Length * 4f * 1.0/initialWordDelay * 100f);
+        score = ((int) (score / 10)) * 10;
+        scoreText.text = score.ToString("0,0,0");
     }
 }
