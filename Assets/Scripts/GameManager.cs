@@ -16,6 +16,19 @@ public class GameManager : MonoBehaviour
     public int waveSize = 6;
     public int numberSpawned = 0;
     public int numberCleared = 0;
+
+    public bool isNukeCooldown = false;
+    public bool isNukeActive = false;
+    public int nukeCooldown = 20;
+
+    public bool isFreezeCooldown = false;
+    public bool isFreezeActive = false;
+    public int freezeCooldown = 20;
+    public int freezeLength = 4;
+    public float freezeStartTime;
+
+    public float timeLeftOver;
+
     public GameObject gameOverCanvas;
     public Button restartButton;
     public Button highscoresButton;
@@ -23,6 +36,8 @@ public class GameManager : MonoBehaviour
     public Text difficultyText;
     public ScoreCounter scoreCounter;
     public WordTimer wordTimer;
+    public Image nukeCooldownImage;
+    public Image freezeCooldownImage;
 
     void Start()
     {
@@ -37,21 +52,21 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(difficulty);
             waveIncrementer = 2;
-            fallSpeed = 125;
+            fallSpeed = 115;
             wordTimer.wordDelay = 1.75f;
         }
         else if (difficulty == "Medium")
         {
             Debug.Log(difficulty);
             waveIncrementer = 3;
-            fallSpeed = 150;
-            wordTimer.wordDelay = 1.5f;
+            fallSpeed = 140;
+            wordTimer.wordDelay = 1.50f;
         }
         else if (difficulty == "Hard")
         {
             Debug.Log(difficulty);
             waveIncrementer = 4;
-            fallSpeed = 175;
+            fallSpeed = 165;
             wordTimer.wordDelay = 1.25f;
         }
 
@@ -61,10 +76,14 @@ public class GameManager : MonoBehaviour
     {
         if (!gameHasEnded)
         {
+            freezeCooldownImage.fillAmount = 0;
+            nukeCooldownImage.fillAmount = 0;
+
             difficultyText.text = difficulty;
             gameHasEnded = true;
             removeAllWords = true;
             generate = false;
+
             Debug.Log("Game Over");
             Debug.Log(scoreCounter.score);
             gameOverCanvas.SetActive(true);
@@ -79,5 +98,58 @@ public class GameManager : MonoBehaviour
     public void Home()
     {
         SceneManager.LoadScene("StartScreen");
+    }
+
+    public void TriggerNuke()
+    {
+        nukeCooldownImage.fillAmount = 1;
+        isNukeCooldown = true;
+        isNukeActive = true;
+    }
+
+    public void TriggerFreeze()
+    {
+        freezeCooldownImage.fillAmount = 1;
+        isFreezeCooldown = true;
+        generate = false;
+        isFreezeActive = true;
+        timeLeftOver = wordTimer.nextWordTime - Time.time;
+
+        freezeStartTime = Time.time;
+    }
+
+    void Update()
+    {
+        if (isFreezeActive && Time.time > freezeLength + freezeStartTime)
+        {
+            generate = true;
+            isFreezeActive = false;
+            wordTimer.nextWordTime = Time.time + timeLeftOver;
+        }
+
+        if (isNukeActive)
+        {
+            isNukeActive = false;
+        }
+
+        if (isNukeCooldown)
+        {
+            nukeCooldownImage.fillAmount -= 1.0f / nukeCooldown * Time.deltaTime;
+
+            if (nukeCooldownImage.fillAmount == 0)
+            {
+                isNukeCooldown = false;
+            }
+        }
+
+        if (isFreezeCooldown)
+        {
+            freezeCooldownImage.fillAmount -= 1.0f / freezeCooldown * Time.deltaTime;
+
+            if (freezeCooldownImage.fillAmount == 0)
+            {
+                isFreezeCooldown = false;
+            }
+        }
     }
 }

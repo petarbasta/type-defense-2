@@ -24,29 +24,38 @@ public class WordDisplay : MonoBehaviour
     text.text = word;
   }
 
-  public void RemoveWord(float initialFallSpeed)
+  public void RemoveWord(float initialWordDelay)
   {
     WordCleared();
-    scoreCounter.UpdateScore(text.text, initialFallSpeed);
+    healthManager.AddHealth(text.text.Length);
+    scoreCounter.UpdateScore(text.text, initialWordDelay);
 
     text.color = Color.red;
     text.CrossFadeAlpha(0f, 1.0f, false);
-    Destroy(gameObject, 1.0f);
+    Destroy(gameObject, 0.5f);
   }
 
   private void Update()
   {
+    if (gameManager.isNukeActive)
+    {
+      RemoveWord(wordTimer.wordDelay);
+    }
+
     if (gameManager.removeAllWords)
     {
       Destroy(gameObject);
     }
     if (gameObject.transform.position.y > WordInput.keyboardHeight)
     {
-      transform.Translate(0f, -gameManager.fallSpeed * Time.deltaTime, 0);
+      if (!gameManager.isFreezeActive)
+      {
+        transform.Translate(0f, -gameManager.fallSpeed * Time.deltaTime, 0);
+      }
     }
     else
     {
-      healthManager.UpdateScore(text.text.Length);
+      healthManager.SubtractHealth(text.text.Length);
       WordCleared();
       Destroy(gameObject);
     }

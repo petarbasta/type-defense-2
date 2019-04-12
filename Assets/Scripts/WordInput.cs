@@ -14,6 +14,8 @@ public class WordInput : MonoBehaviour
 
     void Start()
     {
+        inputField.ActivateInputField();
+
         gameManager = FindObjectOfType<GameManager>();
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -35,27 +37,36 @@ public class WordInput : MonoBehaviour
             inputField.DeactivateInputField();
         }
 
+        bool completed = wordManager.TypeWord(inputField.text.ToLower());
+        if (completed) 
+        {
+           inputField.text = "";      
+        }
+
+        if (inputField.text.ToLower() == "nuke" && !gameManager.isNukeCooldown)
+        {
+            gameManager.TriggerNuke();
+            inputField.text = "";      
+
+        }
+
+        if (inputField.text.ToLower() == "freeze" && !gameManager.isFreezeCooldown)
+        {
+            gameManager.TriggerFreeze();
+            inputField.text = "";      
+        }
+
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            bool completed = wordManager.TypeWord(inputField.text.ToLower());
-            if (completed) 
-            {
-                inputField.text = "";
-            }
+            
             word.text = inputField.text;
         }
         else if (Application.platform == RuntimePlatform.Android)
         {
-            int temp = GetKeyboardSize();
+            int temp = (int) (GetKeyboardSize());
             if (temp > keyboardHeight)
             {
                 keyboardHeight = temp;
-            }
-            
-            bool completed = wordManager.TypeWord(inputField.text.ToLower());
-            if (completed) 
-            {
-                inputField.text = "";      
             }
         }
     }

@@ -15,7 +15,19 @@ public class HealthManager : MonoBehaviour
         health.text = "HP: " + healthPoints;
     }
 
-    public void UpdateScore(int wordLength)
+    public void AddHealth(int wordLength)
+    {
+        healthPoints += wordLength;
+
+        if (healthPoints > 100)
+        {
+            healthPoints = 100;
+        }
+
+        health.text = "HP: " + healthPoints;
+    }
+
+    public void SubtractHealth(int wordLength)
     {
         healthPoints -= wordLength * 3;
         if (healthPoints <= 0)
