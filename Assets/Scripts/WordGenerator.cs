@@ -30,7 +30,6 @@ public class WordGenerator : MonoBehaviour
         if (pools[poolNumber].Count <= 0)
         {
             poolNumber++;
-            Debug.Log("pool number " + poolNumber);
         }
 
         int randomIndex = UnityEngine.Random.Range(0,pools[poolNumber].Count);

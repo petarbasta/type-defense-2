@@ -89,11 +89,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6030104624307467722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d0adda4d9042348ac4186431965bc7, type: 3}
+  m_Script: {fileID: 11500000, guid: ebd89cf4f4d20da4882d555d3d0cc9e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 7518613100910871342}
-  fallSpeed: 100
   healthManager: {fileID: 0}
   gameManager: {fileID: 0}
   scoreCounter: {fileID: 0}

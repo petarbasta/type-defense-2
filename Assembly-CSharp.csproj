@@ -53,16 +53,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameManager.cs" />
-     <Compile Include="Assets\HealthManager.cs" />
-     <Compile Include="Assets\ScoreCounter.cs" />
-     <Compile Include="Assets\Word.cs" />
-     <Compile Include="Assets\WordDisplay.cs" />
-     <Compile Include="Assets\WordGenerator.cs" />
-     <Compile Include="Assets\WordInput.cs" />
-     <Compile Include="Assets\WordManager.cs" />
-     <Compile Include="Assets\WordSpawner.cs" />
-     <Compile Include="Assets\WordTimer.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\HealthManager.cs" />
+     <Compile Include="Assets\Scripts\LevelSelectManager.cs" />
+     <Compile Include="Assets\Scripts\ScoreCounter.cs" />
+     <Compile Include="Assets\Scripts\StartScreenManager.cs" />
+     <Compile Include="Assets\Scripts\Word.cs" />
+     <Compile Include="Assets\Scripts\WordDisplay.cs" />
+     <Compile Include="Assets\Scripts\WordGenerator.cs" />
+     <Compile Include="Assets\Scripts\WordInput.cs" />
+     <Compile Include="Assets\Scripts\WordManager.cs" />
+     <Compile Include="Assets\Scripts\WordSpawner.cs" />
+     <Compile Include="Assets\Scripts\WordTimer.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\StreamingAssets\6 Letter Words.txt" />
