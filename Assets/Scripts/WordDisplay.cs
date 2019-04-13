@@ -10,6 +10,11 @@ public class WordDisplay : MonoBehaviour
   public GameManager gameManager;
   public ScoreCounter scoreCounter;
   public WordTimer wordTimer;
+  
+  public bool hasBeenTyped = false;
+  public int timeBetweenWaves = 2;
+  public float initialWordDelay;
+
 
   public void Start()
   {
@@ -19,13 +24,15 @@ public class WordDisplay : MonoBehaviour
     wordTimer = FindObjectOfType<WordTimer>();
   }
 
-  public void SetWord(string word)
+  public void SetWord(string word, float _initialWordDelay)
   {
     text.text = word;
+    initialWordDelay = _initialWordDelay;
   }
 
-  public void RemoveWord(float initialWordDelay)
+  public void RemoveWord()
   {
+    hasBeenTyped = true;
     WordCleared();
     healthManager.AddHealth(text.text.Length);
     scoreCounter.UpdateScore(text.text, initialWordDelay);
@@ -39,13 +46,14 @@ public class WordDisplay : MonoBehaviour
   {
     if (gameManager.isNukeActive)
     {
-      RemoveWord(wordTimer.wordDelay);
+      RemoveWord();
     }
 
     if (gameManager.removeAllWords)
     {
       Destroy(gameObject);
     }
+    
     if (gameObject.transform.position.y > WordInput.keyboardHeight)
     {
       if (!gameManager.isFreezeActive)
@@ -53,7 +61,7 @@ public class WordDisplay : MonoBehaviour
         transform.Translate(0f, -gameManager.fallSpeed * Time.deltaTime, 0);
       }
     }
-    else
+    else if (!hasBeenTyped)
     {
       healthManager.SubtractHealth(text.text.Length);
       WordCleared();
@@ -71,7 +79,7 @@ public class WordDisplay : MonoBehaviour
       gameManager.numberSpawned = 0;
       gameManager.numberCleared = 0;
       gameManager.generate = true;
-      wordTimer.nextWordTime = Time.time + 2f;
+      wordTimer.nextWordTime = Time.time + timeBetweenWaves;
     }
   }
 }

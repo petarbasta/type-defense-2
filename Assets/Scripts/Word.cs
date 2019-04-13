@@ -8,20 +8,16 @@ public class Word
 {
     public string word;
     WordDisplay display;
-    public GameManager gameManager;
-    public float initialWordDelay;
 
-    public Word (string _word, WordDisplay _display, GameManager _gameManager, float _initialWordDelay) 
+    public Word (string _word, WordDisplay _display, float _initialWordDelay) 
     {
         word = _word;
         display = _display;
-        gameManager = _gameManager;
-        initialWordDelay = _initialWordDelay;
-        display.SetWord(word);
+        display.SetWord(_word, _initialWordDelay);
     }
 
     public void RemoveWord()
     {   
-        display.RemoveWord(initialWordDelay);
+        display.RemoveWord();
     }
 }

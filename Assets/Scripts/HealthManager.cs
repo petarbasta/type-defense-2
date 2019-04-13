@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthManager : MonoBehaviour
 {
     public GameManager gameManager;
     public int healthPoints = 100;
-    public Text health;
+    public TextMeshProUGUI health;
 
     // Start is called before the first frame update
     void Start()

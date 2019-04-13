@@ -5,15 +5,26 @@ using UnityEngine.UI;
 
 public class WordInput : MonoBehaviour
 {
-    public string currentWord = "";
     public WordManager wordManager;
-    public Text word;
-    public static int keyboardHeight = 0;
-    public InputField inputField;
     public GameManager gameManager;
+    public InputField inputField;
+
+    public GameObject openKeyboardObject;
+    public Button openKeyboardButton;
+    public Text word;
+    public Image keyboardHeightLine;
+
+    public string currentWord = "";
+    public static int keyboardHeight = 0;
 
     void Start()
     {
+        keyboardHeightLine.rectTransform.sizeDelta = new Vector2(Screen.width*2, 10);
+
+        openKeyboardObject = GameObject.Find("Open Keyboard Object");
+        openKeyboardObject.SetActive(true);
+        openKeyboardButton.onClick.AddListener(OpenKeyboard);
+
         inputField.ActivateInputField();
 
         gameManager = FindObjectOfType<GameManager>();
@@ -28,17 +39,20 @@ public class WordInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameManager.gameHasEnded)
+        if (gameManager.gameHasEnded)
         {
-            inputField.ActivateInputField();
+            openKeyboardObject.SetActive(false);
+            inputField.DeactivateInputField();
+            keyboardHeightLine.transform.position = new Vector3(Screen.width/2, -10, 0);
         }
         else
         {
-            inputField.DeactivateInputField();
+            keyboardHeightLine.transform.position = new Vector3(Screen.width/2, keyboardHeight, 0);
         }
 
+
         bool completed = wordManager.TypeWord(inputField.text.ToLower());
-        if (completed) 
+        if (completed)
         {
            inputField.text = "";      
         }
@@ -69,6 +83,11 @@ public class WordInput : MonoBehaviour
                 keyboardHeight = temp;
             }
         }
+    }
+
+    public void OpenKeyboard()
+    {
+        inputField.ActivateInputField();
     }
 
     public int GetKeyboardSize()

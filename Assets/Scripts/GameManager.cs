@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public bool isFreezeCooldown = false;
     public bool isFreezeActive = false;
-    public int freezeCooldown = 20;
+    public int freezeCooldown = 15;
     public int freezeLength = 4;
     public float freezeStartTime;
 
@@ -51,25 +51,24 @@ public class GameManager : MonoBehaviour
         if (difficulty == "Easy")
         {
             Debug.Log(difficulty);
-            waveIncrementer = 2;
-            fallSpeed = 115;
+            waveIncrementer = 1;
+            fallSpeed = 110;
             wordTimer.wordDelay = 1.75f;
         }
         else if (difficulty == "Medium")
         {
             Debug.Log(difficulty);
-            waveIncrementer = 3;
-            fallSpeed = 140;
+            waveIncrementer = 1;
+            fallSpeed = 135;
             wordTimer.wordDelay = 1.50f;
         }
         else if (difficulty == "Hard")
         {
             Debug.Log(difficulty);
-            waveIncrementer = 4;
-            fallSpeed = 165;
+            waveIncrementer = 1;
+            fallSpeed = 160;
             wordTimer.wordDelay = 1.25f;
         }
-
     }
 
     public void EndGame()
