@@ -55,7 +55,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HealthManager.cs" />
-     <Compile Include="Assets\Scripts\LevelSelectManager.cs" />
      <Compile Include="Assets\Scripts\ScoreCounter.cs" />
      <Compile Include="Assets\Scripts\StartScreenManager.cs" />
      <Compile Include="Assets\Scripts\Word.cs" />

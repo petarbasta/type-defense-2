@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static string difficulty;
     public float fallSpeed;
     public int waveIncrementer;
     public bool gameHasEnded = false;
@@ -48,27 +46,9 @@ public class GameManager : MonoBehaviour
         restartButton.onClick.AddListener(Restart);
         homeButton.onClick.AddListener(Home);
 
-        if (difficulty == "Easy")
-        {
-            Debug.Log(difficulty);
-            waveIncrementer = 1;
-            fallSpeed = 110;
-            wordTimer.wordDelay = 1.75f;
-        }
-        else if (difficulty == "Medium")
-        {
-            Debug.Log(difficulty);
-            waveIncrementer = 1;
-            fallSpeed = 135;
-            wordTimer.wordDelay = 1.50f;
-        }
-        else if (difficulty == "Hard")
-        {
-            Debug.Log(difficulty);
-            waveIncrementer = 1;
-            fallSpeed = 160;
-            wordTimer.wordDelay = 1.25f;
-        }
+        waveIncrementer = 1;
+        fallSpeed = 100;
+        wordTimer.wordDelay = 1.75f; 
     }
 
     public void EndGame()
@@ -78,7 +58,6 @@ public class GameManager : MonoBehaviour
             freezeCooldownImage.fillAmount = 0;
             nukeCooldownImage.fillAmount = 0;
 
-            difficultyText.text = difficulty;
             gameHasEnded = true;
             removeAllWords = true;
             generate = false;

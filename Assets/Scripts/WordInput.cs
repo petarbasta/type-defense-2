@@ -50,7 +50,6 @@ public class WordInput : MonoBehaviour
             keyboardHeightLine.transform.position = new Vector3(Screen.width/2, keyboardHeight, 0);
         }
 
-
         bool completed = wordManager.TypeWord(inputField.text.ToLower());
         if (completed)
         {

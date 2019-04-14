@@ -18,6 +18,6 @@ public class StartScreenManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("LevelSelectScreen");
+        SceneManager.LoadScene("PlayScreen");
     }
 }
