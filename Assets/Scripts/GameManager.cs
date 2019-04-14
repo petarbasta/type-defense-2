@@ -11,34 +11,51 @@ public class GameManager : MonoBehaviour
     public bool gameHasEnded = false;
     public bool removeAllWords = false;
     public bool generate = true;
-    public int waveSize = 6;
-    public int numberSpawned = 0;
-    public int numberCleared = 0;
+    public int waveSize;
+    public int numberSpawned;
+    public int numberCleared;
 
+    public Sprite lockSprite;
+
+    public Image nukeImage;
+    public Image nukeCooldownImage;
     public bool isNukeCooldown = false;
     public bool isNukeActive = false;
-    public int nukeCooldown = 20;
 
+    public Image freezeImage;
+    public Image freezeCooldownImage;
     public bool isFreezeCooldown = false;
     public bool isFreezeActive = false;
-    public int freezeCooldown = 15;
-    public int freezeLength = 4;
     public float freezeStartTime;
+
+    public Image slowCooldownImage;
+    public bool isSlowCooldown = false;
+    public bool isSlowActive = false;
+    public float slowStartTime;
 
     public float timeLeftOver;
 
-    public GameObject gameOverCanvas;
     public Button restartButton;
     public Button highscoresButton;
     public Button homeButton;
-    public Text difficultyText;
+
+    public GameObject gameOverCanvas;
     public ScoreCounter scoreCounter;
     public WordTimer wordTimer;
-    public Image nukeCooldownImage;
-    public Image freezeCooldownImage;
+
 
     void Start()
     {
+        if (!SaveLoad.playerProgress.isNukeUnlocked)
+        {
+            nukeImage.sprite = lockSprite;
+        }
+
+        if (!SaveLoad.playerProgress.isFreezeUnlocked)
+        {
+            freezeImage.sprite = lockSprite;
+        }
+
         scoreCounter = FindObjectOfType<ScoreCounter>();
         wordTimer = FindObjectOfType<WordTimer>();
 
@@ -49,6 +66,9 @@ public class GameManager : MonoBehaviour
         waveIncrementer = 1;
         fallSpeed = 100;
         wordTimer.wordDelay = 1.75f; 
+        waveSize = 6;
+        numberSpawned = 0;
+        numberCleared = 0;
     }
 
     public void EndGame()
@@ -96,23 +116,42 @@ public class GameManager : MonoBehaviour
         freezeStartTime = Time.time;
     }
 
+    public void TriggerSlow()
+    {
+        slowCooldownImage.fillAmount = 1;
+        isSlowCooldown = true;
+        isSlowActive = true;
+
+        slowStartTime = Time.time;
+    }
+
+    public void TriggerQuit()
+    {
+        SceneManager.LoadScene("StartScreen");
+    }
+
     void Update()
     {
-        if (isFreezeActive && Time.time > freezeLength + freezeStartTime)
+        if (isNukeActive)
+        {
+            isNukeActive = false;
+        }
+
+        if (isFreezeActive && Time.time > SaveLoad.playerProgress.freezeLength + freezeStartTime)
         {
             generate = true;
             isFreezeActive = false;
             wordTimer.nextWordTime = Time.time + timeLeftOver;
         }
 
-        if (isNukeActive)
+        if (isSlowActive && Time.time > SaveLoad.playerProgress.slowLength + slowStartTime)
         {
-            isNukeActive = false;
+            isSlowActive = false;
         }
-
+        
         if (isNukeCooldown)
         {
-            nukeCooldownImage.fillAmount -= 1.0f / nukeCooldown * Time.deltaTime;
+            nukeCooldownImage.fillAmount -= 1.0f / SaveLoad.playerProgress.nukeCooldown * Time.deltaTime;
 
             if (nukeCooldownImage.fillAmount == 0)
             {
@@ -122,11 +161,21 @@ public class GameManager : MonoBehaviour
 
         if (isFreezeCooldown)
         {
-            freezeCooldownImage.fillAmount -= 1.0f / freezeCooldown * Time.deltaTime;
+            freezeCooldownImage.fillAmount -= 1.0f / SaveLoad.playerProgress.freezeCooldown * Time.deltaTime;
 
             if (freezeCooldownImage.fillAmount == 0)
             {
                 isFreezeCooldown = false;
+            }
+        }
+
+        if (isSlowCooldown)
+        {
+            slowCooldownImage.fillAmount -= 1.0f / SaveLoad.playerProgress.slowCooldown * Time.deltaTime;
+
+            if (slowCooldownImage.fillAmount == 0)
+            {
+                isSlowCooldown = false;
             }
         }
     }

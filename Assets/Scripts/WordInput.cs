@@ -56,17 +56,28 @@ public class WordInput : MonoBehaviour
            inputField.text = "";      
         }
 
-        if (inputField.text.ToLower() == "nuke" && !gameManager.isNukeCooldown)
+        if (inputField.text.ToLower() == "nuke" && !gameManager.isNukeCooldown && SaveLoad.playerProgress.isNukeUnlocked)
         {
             gameManager.TriggerNuke();
             inputField.text = "";      
 
         }
 
-        if (inputField.text.ToLower() == "freeze" && !gameManager.isFreezeCooldown)
+        if (inputField.text.ToLower() == "freeze" && !gameManager.isFreezeCooldown && SaveLoad.playerProgress.isFreezeUnlocked)
         {
             gameManager.TriggerFreeze();
             inputField.text = "";      
+        }
+
+        if (inputField.text.ToLower() == "slow" && !gameManager.isSlowCooldown)
+        {
+            gameManager.TriggerSlow();
+            inputField.text = "";      
+        }
+
+        if (inputField.text.ToLower() == "quit")
+        {
+            gameManager.TriggerQuit();
         }
 
         if (Application.platform == RuntimePlatform.WindowsEditor)

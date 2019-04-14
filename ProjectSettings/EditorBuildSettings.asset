@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: 5a4efdca42639fa4ea6eba71cbca731b
   - enabled: 1
-    path: Assets/Scenes/LevelSelectScreen.unity
-    guid: 15b69bc540328404aadf3da70996296d
-  - enabled: 1
     path: Assets/Scenes/PlayScreen.unity
     guid: 80f5848c135e08242ad65b5ad2d08dce
   m_configObjects: {}

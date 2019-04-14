@@ -58,7 +58,14 @@ public class WordDisplay : MonoBehaviour
     {
       if (!gameManager.isFreezeActive)
       {
-        transform.Translate(0f, -gameManager.fallSpeed * Time.deltaTime, 0);
+        if (!gameManager.isSlowActive)
+        {
+          transform.Translate(0f, -gameManager.fallSpeed * Time.deltaTime, 0);
+        }
+        else
+        {
+          transform.Translate(0f, -SaveLoad.playerProgress.slowSpeed * Time.deltaTime, 0);
+        }
       }
     }
     else if (!hasBeenTyped)

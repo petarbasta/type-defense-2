@@ -3,7 +3,6 @@ PlayerPath?
 C:/Users/pbast/Documents/GitHub/type-defense-2/type-defense-2.apk
 SceneListBegin?
 Assets/Scenes/StartScreen.unity
-Assets/Scenes/LevelSelectScreen.unity
 Assets/Scenes/PlayScreen.unity
 SceneListEnd?
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
@@ -163,8 +162,7 @@ a4f0a4f62100f1a4fb5cbe0e00dde83f Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 5fc094978ce3e3591a7500ed380d854a Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 5fc7693f4c1db3c62acf6bca0c82d13b Assembly-CSharp.dll:.StartScreenManager
-c0acd4f7ad54e00797011dc1e08232b8 Assembly-CSharp.dll:.GameManager
-4a719599f865337e263bf089f89febe0 Assembly-CSharp.dll:.LevelSelectManager
+492a0fe45915b42731d1e32a8f6e92a2 Assembly-CSharp.dll:.GameManager
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
