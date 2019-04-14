@@ -97,4 +97,6 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   scoreCounter: {fileID: 0}
   wordTimer: {fileID: 0}
-  isDelete: 0
+  hasBeenTyped: 0
+  timeBetweenWaves: 2
+  initialWordDelay: 0
