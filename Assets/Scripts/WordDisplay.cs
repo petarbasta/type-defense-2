@@ -15,7 +15,6 @@ public class WordDisplay : MonoBehaviour
   public int timeBetweenWaves = 2;
   public float initialWordDelay;
 
-
   public void Start()
   {
     healthManager = FindObjectOfType<HealthManager>();
@@ -44,7 +43,7 @@ public class WordDisplay : MonoBehaviour
 
   private void Update()
   {
-    if (gameManager.isNukeActive)
+    if (gameManager.playerProgress.nuke.isActive)
     {
       RemoveWord();
     }
@@ -56,15 +55,15 @@ public class WordDisplay : MonoBehaviour
     
     if (gameObject.transform.position.y > WordInput.keyboardHeight)
     {
-      if (!gameManager.isFreezeActive)
+      if (!gameManager.playerProgress.freeze.isActive)
       {
-        if (!gameManager.isSlowActive)
+        if (!gameManager.playerProgress.slow.isActive)
         {
           transform.Translate(0f, -gameManager.fallSpeed * Time.deltaTime, 0);
         }
         else
         {
-          transform.Translate(0f, -SaveLoad.playerProgress.slowSpeed * Time.deltaTime, 0);
+          transform.Translate(0f, -gameManager.playerProgress.slow.slowSpeed * Time.deltaTime, 0);
         }
       }
     }

@@ -13,20 +13,33 @@ public class StartScreenManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadData();
+        AddListeners();
+    }
+
+    public void AddListeners()
+    {
+        playButton.onClick.AddListener(Play);
+        highscoresButton.onClick.AddListener(Highscores);
+        optionsButton.onClick.AddListener(Options);
+    }
+
+    public void LoadData()
+    {
         SaveLoad.Load();
         if (SaveLoad.playerProgress == null)
         {
             SaveLoad.playerProgress = new PlayerProgress();
         }
-
-        playButton.onClick.AddListener(Play);
-        optionsButton.onClick.AddListener(Options);
-
     }
 
     public void Play()
     {
         SceneManager.LoadScene("PlayScreen");
+    }
+
+    public void Highscores()
+    {
     }
 
     public void Options()

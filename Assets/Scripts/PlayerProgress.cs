@@ -5,29 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerProgress
 {
-    public int nukeCooldown;
-    public bool isNukeUnlocked;
+    public NukePowerup nuke;
+    public FreezePowerup freeze;
+    public SlowPowerup slow;
 
-    public int freezeCooldown;
-    public int freezeLength;
-    public bool isFreezeUnlocked;
-
-    public int slowCooldown;
-    public int slowLength;
-    public int slowSpeed;
-
+    public int gold;
 
     public PlayerProgress()
     {
-        nukeCooldown = 45;
-        isNukeUnlocked = false;
+        nuke = new NukePowerup();
+        freeze = new FreezePowerup();
+        slow = new SlowPowerup();
 
-        freezeCooldown = 45;
-        freezeLength = 3;
-        isFreezeUnlocked = false;
-
-        slowCooldown = 45;
-        slowLength = 3;
-        slowSpeed = 40;
+        gold = 0;
     }
 }

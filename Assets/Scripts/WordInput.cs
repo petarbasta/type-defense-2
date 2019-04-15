@@ -11,7 +11,7 @@ public class WordInput : MonoBehaviour
 
     public GameObject openKeyboardObject;
     public Button openKeyboardButton;
-    public Text word;
+    public Text currentWordText;
     public Image keyboardHeightLine;
 
     public string currentWord = "";
@@ -21,23 +21,37 @@ public class WordInput : MonoBehaviour
     {
         keyboardHeightLine.rectTransform.sizeDelta = new Vector2(Screen.width*2, 10);
 
+        gameManager = FindObjectOfType<GameManager>();
         openKeyboardObject = GameObject.Find("Open Keyboard Object");
         openKeyboardObject.SetActive(true);
         openKeyboardButton.onClick.AddListener(OpenKeyboard);
 
         inputField.ActivateInputField();
 
-        gameManager = FindObjectOfType<GameManager>();
         if (Application.platform == RuntimePlatform.Android)
         {
-            word.text = "";
+            currentWordText.text = "";
         }
-
-        inputField.onEndEdit = null;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        CheckIfGameEnded();
+        CheckIfWordTyped();
+        CheckIfPowerupTriggered();        
+
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            currentWordText.text = inputField.text;
+        }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            UpdateKeyboardSize();
+        }
+    }
+
+    public void CheckIfGameEnded()
     {
         if (gameManager.gameHasEnded)
         {
@@ -49,27 +63,33 @@ public class WordInput : MonoBehaviour
         {
             keyboardHeightLine.transform.position = new Vector3(Screen.width/2, keyboardHeight, 0);
         }
+    }
 
+    public void CheckIfWordTyped()
+    {
         bool completed = wordManager.TypeWord(inputField.text.ToLower());
         if (completed)
         {
            inputField.text = "";      
         }
+    }
 
-        if (inputField.text.ToLower() == "nuke" && !gameManager.isNukeCooldown && SaveLoad.playerProgress.isNukeUnlocked)
+    public void CheckIfPowerupTriggered()
+    {
+        if (inputField.text.ToLower() == "nuke" && !gameManager.playerProgress.nuke.isOnCooldown && SaveLoad.playerProgress.nuke.isUnlocked)
         {
             gameManager.TriggerNuke();
             inputField.text = "";      
 
         }
 
-        if (inputField.text.ToLower() == "freeze" && !gameManager.isFreezeCooldown && SaveLoad.playerProgress.isFreezeUnlocked)
+        if (inputField.text.ToLower() == "freeze" && !gameManager.playerProgress.freeze.isOnCooldown && SaveLoad.playerProgress.freeze.isUnlocked)
         {
             gameManager.TriggerFreeze();
             inputField.text = "";      
         }
 
-        if (inputField.text.ToLower() == "slow" && !gameManager.isSlowCooldown)
+        if (inputField.text.ToLower() == "slow" && !gameManager.playerProgress.slow.isOnCooldown)
         {
             gameManager.TriggerSlow();
             inputField.text = "";      
@@ -79,20 +99,6 @@ public class WordInput : MonoBehaviour
         {
             gameManager.TriggerQuit();
         }
-
-        if (Application.platform == RuntimePlatform.WindowsEditor)
-        {
-            
-            word.text = inputField.text;
-        }
-        else if (Application.platform == RuntimePlatform.Android)
-        {
-            int temp = (int) (GetKeyboardSize());
-            if (temp > keyboardHeight)
-            {
-                keyboardHeight = temp;
-            }
-        }
     }
 
     public void OpenKeyboard()
@@ -100,7 +106,7 @@ public class WordInput : MonoBehaviour
         inputField.ActivateInputField();
     }
 
-    public int GetKeyboardSize()
+    public void UpdateKeyboardSize()
     {
         using(AndroidJavaClass UnityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -110,7 +116,12 @@ public class WordInput : MonoBehaviour
             {
                 View.Call("getWindowVisibleDisplayFrame", Rct);
 
-                return Screen.height - Rct.Call<int>("height");
+                int currentKeyboardHeight = Screen.height - Rct.Call<int>("height");
+
+                if (currentKeyboardHeight > keyboardHeight)
+                {
+                    keyboardHeight = currentKeyboardHeight;
+                }
             }
         }
     }

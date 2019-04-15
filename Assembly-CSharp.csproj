@@ -56,6 +56,11 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HealthManager.cs" />
      <Compile Include="Assets\Scripts\PlayerProgress.cs" />
+     <Compile Include="Assets\Scripts\Powerups\FreezePowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\NukePowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\Powerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\QuitPowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\SlowPowerup.cs" />
      <Compile Include="Assets\Scripts\SaveLoad.cs" />
      <Compile Include="Assets\Scripts\ScoreCounter.cs" />
      <Compile Include="Assets\Scripts\StartScreenManager.cs" />
@@ -64,7 +69,6 @@
      <Compile Include="Assets\Scripts\WordGenerator.cs" />
      <Compile Include="Assets\Scripts\WordInput.cs" />
      <Compile Include="Assets\Scripts\WordManager.cs" />
-     <Compile Include="Assets\Scripts\WordProperties.cs" />
      <Compile Include="Assets\Scripts\WordSpawner.cs" />
      <Compile Include="Assets\Scripts\WordTimer.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

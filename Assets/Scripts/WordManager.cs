@@ -8,18 +8,18 @@ public class WordManager : MonoBehaviour
     public List<Word> words;
     public WordSpawner wordSpawner;
     public WordGenerator wordGenerator;
-    public WordTimer wordTimer;
+    public GameManager gameManager;
 
     public void Start()
     {
-        wordTimer = FindObjectOfType<WordTimer>();
+        gameManager = FindObjectOfType<GameManager>();
         wordGenerator.LoadAllWords();
     }
 
     public void AddWord()
     {
         WordDisplay wordDisplay = wordSpawner.SpawnWord();
-        Word word = new Word(wordGenerator.GetRandomWord(), wordDisplay, wordTimer.wordDelay);
+        Word word = new Word(wordGenerator.GetRandomWord(), wordDisplay, gameManager.wordDelay);
         words.Add(word);
     }
 
