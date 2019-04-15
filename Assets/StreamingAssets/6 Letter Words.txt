@@ -76,7 +76,6 @@ unrest
 breeze
 voyage
 peanut
-instal
 mature
 belief
 europe
@@ -888,7 +887,6 @@ course
 defeat
 bother
 cereal
-instal
 stroke
 efflux
 gutter

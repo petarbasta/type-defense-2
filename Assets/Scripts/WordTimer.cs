@@ -17,7 +17,7 @@ public class WordTimer : MonoBehaviour
 
     void Update()
     {
-        if (Time.time >= nextWordTime && wordGenerator.words[0].Length > 0 && gameManager.generate)
+        if (Time.time >= nextWordTime && wordGenerator.words[0].Length > 0 && GameManager.generate)
         {
             wordManager.AddWord();
             nextWordTime = Time.time + gameManager.wordDelay;

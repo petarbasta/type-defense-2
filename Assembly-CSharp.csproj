@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\SaveLoad.cs" />
      <Compile Include="Assets\Scripts\ScoreCounter.cs" />
      <Compile Include="Assets\Scripts\StartScreenManager.cs" />
+     <Compile Include="Assets\Scripts\StoreManager.cs" />
      <Compile Include="Assets\Scripts\Word.cs" />
      <Compile Include="Assets\Scripts\WordDisplay.cs" />
      <Compile Include="Assets\Scripts\WordGenerator.cs" />

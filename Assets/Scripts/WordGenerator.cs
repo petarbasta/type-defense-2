@@ -24,7 +24,7 @@ public class WordGenerator : MonoBehaviour
 
         if (gameManager.numberSpawned == gameManager.waveSize)
         {
-            gameManager.generate = false;
+            GameManager.generate = false;
         }
 
         if (pools[poolNumber].Count <= 0)

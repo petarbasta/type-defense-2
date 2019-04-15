@@ -6,9 +6,12 @@ using UnityEngine.UI;
 [System.Serializable]
 public class NukePowerup : Powerup
 {
+    public int unlockPrice;
+
     public NukePowerup()
     {
         cooldown = 45;
+        unlockPrice = 1000;
     }
 
     public void Reset(Image cooldownImage)

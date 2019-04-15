@@ -43,7 +43,7 @@ public class WordDisplay : MonoBehaviour
 
   private void Update()
   {
-    if (gameManager.playerProgress.nuke.isActive)
+    if (SaveLoad.playerProgress.nuke.isActive)
     {
       RemoveWord();
     }
@@ -55,15 +55,15 @@ public class WordDisplay : MonoBehaviour
     
     if (gameObject.transform.position.y > WordInput.keyboardHeight)
     {
-      if (!gameManager.playerProgress.freeze.isActive)
+      if (!SaveLoad.playerProgress.freeze.isActive)
       {
-        if (!gameManager.playerProgress.slow.isActive)
+        if (!SaveLoad.playerProgress.slow.isActive)
         {
           transform.Translate(0f, -gameManager.fallSpeed * Time.deltaTime, 0);
         }
         else
         {
-          transform.Translate(0f, -gameManager.playerProgress.slow.slowSpeed * Time.deltaTime, 0);
+          transform.Translate(0f, -SaveLoad.playerProgress.slow.slowSpeed * Time.deltaTime, 0);
         }
       }
     }
@@ -84,7 +84,7 @@ public class WordDisplay : MonoBehaviour
       gameManager.waveSize += gameManager.waveIncrementer;
       gameManager.numberSpawned = 0;
       gameManager.numberCleared = 0;
-      gameManager.generate = true;
+      GameManager.generate = true;
       wordTimer.nextWordTime = Time.time + timeBetweenWaves;
     }
   }

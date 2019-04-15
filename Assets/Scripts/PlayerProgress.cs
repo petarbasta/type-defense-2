@@ -10,6 +10,9 @@ public class PlayerProgress
     public SlowPowerup slow;
 
     public int gold;
+    public int highscore;
+    public int totalScore;
+    public int rank;
 
     public PlayerProgress()
     {
@@ -17,6 +20,10 @@ public class PlayerProgress
         freeze = new FreezePowerup();
         slow = new SlowPowerup();
 
-        gold = 0;
+        gold = 1000000;
+        highscore = 0;
+        totalScore = 0;
+        rank = 0;
+
     }
 }

@@ -4,18 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
-    public float wordDelay = 1.75f;
+    public static string lastScene;
+
+    public float wordDelay = 1.50f;
     public float fallSpeed;
     public int waveIncrementer;
     public int waveSize = 6;
     public int numberSpawned = 0;
     public int numberCleared = 0;
-    public bool gameHasEnded = false;
+    public static bool gameHasEnded = false;
+    public static int goldEarned;
     public bool removeAllWords = false;
-    public bool generate;
+    public static bool generate;
 
     public Sprite lockSprite;
 
@@ -31,60 +35,69 @@ public class GameManager : MonoBehaviour
     public Image slowCooldownImage;
     public TextMeshProUGUI slowText;
 
-    public PlayerProgress playerProgress;
     public QuitPowerup quit;
 
     public Button restartButton;
-    public Button submitScoreButton;
+    public Button highscoresButton;
     public Button storeButton;
     public Button optionsButton;
     public Button homeButton;
 
-    public GameObject gameOverCanvas;
+    public TextMeshProUGUI highscoreText;
+    public TextMeshProUGUI goldEarnedText;
+    public TextMeshProUGUI totalGoldText;
+
+    public GameObject gameOverMenu;
     public ScoreCounter scoreCounter;
     public WordTimer wordTimer;
+    public HealthManager healthManager;
 
     void Start()
     {   
-        playerProgress = SaveLoad.playerProgress;
-
         FindObjects();
         AddListeners();
         InitializeVariables();
-        playerProgress.nuke.CheckIfLocked(lockSprite, nukeImage);
-        playerProgress.freeze.CheckIfLocked(lockSprite, freezeImage);
-
-        gameOverCanvas.SetActive(false);
+        SaveLoad.playerProgress.nuke.CheckIfLocked(lockSprite, nukeImage);
+        SaveLoad.playerProgress.freeze.CheckIfLocked(lockSprite, freezeImage);
     }
 
     void Update()
     {
-        playerProgress.nuke.CheckCoolDown(nukeCooldownImage);
-        playerProgress.freeze.CheckCoolDown(freezeCooldownImage);
-        playerProgress.slow.CheckCoolDown(slowCooldownImage);
+        SaveLoad.playerProgress.nuke.CheckCoolDown(nukeCooldownImage);
+        SaveLoad.playerProgress.freeze.CheckCoolDown(freezeCooldownImage);
+        SaveLoad.playerProgress.slow.CheckCoolDown(slowCooldownImage);
 
-        playerProgress.nuke.CheckIfComplete();
-        playerProgress.freeze.CheckIfComplete(this, wordTimer);
-        playerProgress.slow.CheckIfComplete();
+        SaveLoad.playerProgress.nuke.CheckIfComplete();
+        SaveLoad.playerProgress.freeze.CheckIfComplete(wordTimer);
+        SaveLoad.playerProgress.slow.CheckIfComplete();
     }
 
     public void EndGame()
     {
         if (!gameHasEnded)
         {   
-            SaveLoad.playerProgress = playerProgress;
-            Debug.Log(SaveLoad.playerProgress.nuke.cooldown);
+            goldEarned = 5 + ScoreCounter.score / 3500;
+            SaveLoad.playerProgress.gold += goldEarned;
+            goldEarnedText.text = "+" + ((goldEarned).ToString("0,0,0")).TrimStart(new Char[] { '0' } );
+            totalGoldText.text = "Total: " + (SaveLoad.playerProgress.gold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
+
+            if (ScoreCounter.score > SaveLoad.playerProgress.highscore)
+            {
+                SaveLoad.playerProgress.highscore = ScoreCounter.score;
+                highscoreText.text = "Highscore: " + SaveLoad.playerProgress.highscore.ToString("0,0,0");
+            }
+
             SaveLoad.Save();
             ClearScreen();
-            gameOverCanvas.SetActive(true);
+            gameOverMenu.SetActive(true);
         }
     }
 
     public void ClearScreen()
     {
-        playerProgress.nuke.Reset(nukeCooldownImage);
-        playerProgress.freeze.Reset(freezeCooldownImage);
-        playerProgress.slow.Reset(slowCooldownImage);
+        SaveLoad.playerProgress.nuke.Reset(nukeCooldownImage);
+        SaveLoad.playerProgress.freeze.Reset(freezeCooldownImage);
+        SaveLoad.playerProgress.slow.Reset(slowCooldownImage);
 
         gameHasEnded = true;
         removeAllWords = true;
@@ -93,15 +106,17 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        gameHasEnded = false;
         SceneManager.LoadScene("PlayScreen");
     }
 
-    public void SubmitScore()
+    public void Highscores()
     {
     }
 
     public void Store()
     {
+        lastScene = "PlayScreen";
         SceneManager.LoadScene("StoreScreen");
     }
 
@@ -111,6 +126,7 @@ public class GameManager : MonoBehaviour
 
     public void Home()
     {
+        gameHasEnded = false;
         SceneManager.LoadScene("StartScreen");
     }
 
@@ -121,31 +137,49 @@ public class GameManager : MonoBehaviour
 
     public void TriggerNuke()
     {
-        playerProgress.nuke.Trigger(nukeCooldownImage);
-        
+        SaveLoad.playerProgress.nuke.Trigger(nukeCooldownImage);
     }
 
     public void TriggerFreeze()
     {
-        playerProgress.freeze.Trigger(this, wordTimer.nextWordTime, freezeCooldownImage);
+        SaveLoad.playerProgress.freeze.Trigger(wordTimer.nextWordTime, freezeCooldownImage);
     }
 
     public void TriggerSlow()
     {
-        playerProgress.slow.Trigger(slowCooldownImage);
+        SaveLoad.playerProgress.slow.Trigger(slowCooldownImage);
     }
 
     public void InitializeVariables()
     {
+        if (!gameHasEnded)
+        {
+            gameOverMenu.SetActive(false);
+            ScoreCounter.score = 0;
+            goldEarned = 0;
+            HealthManager.health = 100;
+            generate = true;
+        }
+        else
+        {   
+            gameOverMenu.SetActive(true);
+
+        }
+
+        goldEarnedText.text = "+" + ((goldEarned).ToString("0,0,0")).TrimStart(new Char[] { '0' } );
+        totalGoldText.text = "Total: " + (SaveLoad.playerProgress.gold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
+        highscoreText.text = "Highscore: " + SaveLoad.playerProgress.highscore.ToString("0,0,0");
+        scoreCounter.scoreText.text = "" + ScoreCounter.score;
+        healthManager.healthText.text = "" + HealthManager.health;
+
         waveIncrementer = 1;
-        fallSpeed = 100;
-        generate = true;
+        fallSpeed = 125;
     }
 
     public void AddListeners()
     {
         restartButton.onClick.AddListener(Restart);
-        submitScoreButton.onClick.AddListener(SubmitScore);
+        highscoresButton.onClick.AddListener(Highscores);
         storeButton.onClick.AddListener(Store);
         optionsButton.onClick.AddListener(Options);
         homeButton.onClick.AddListener(Home);
@@ -155,5 +189,6 @@ public class GameManager : MonoBehaviour
     {
         scoreCounter = FindObjectOfType<ScoreCounter>();
         wordTimer = FindObjectOfType<WordTimer>();
+        healthManager = FindObjectOfType<HealthManager>();
     }
 }

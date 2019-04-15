@@ -7,35 +7,35 @@ using TMPro;
 public class HealthManager : MonoBehaviour
 {
     public GameManager gameManager;
-    public int healthPoints = 100;
-    public TextMeshProUGUI health;
+    public static int health = 100;
+    public TextMeshProUGUI healthText;
 
     // Start is called before the first frame update
     void Start()
     {
-        health.text = "HP: " + healthPoints;
+        healthText.text = "HP: " + health;
     }
 
     public void AddHealth(int wordLength)
     {
-        healthPoints += wordLength;
+        health += wordLength;
 
-        if (healthPoints > 100)
+        if (health > 100)
         {
-            healthPoints = 100;
+            health = 100;
         }
 
-        health.text = "HP: " + healthPoints;
+        healthText.text = "HP: " + health;
     }
 
     public void SubtractHealth(int wordLength)
     {
-        healthPoints -= wordLength * 3;
-        if (healthPoints <= 0)
+        health -= wordLength * 3;
+        if (health <= 0)
         {   
-            healthPoints = 0;
+            health = 0;
             gameManager.EndGame();
         }
-        health.text = "HP: " + healthPoints;
+        healthText.text = "HP: " + health;
     }
 }

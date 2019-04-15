@@ -43,6 +43,7 @@ public class WordInput : MonoBehaviour
 
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
+
             currentWordText.text = inputField.text;
         }
         else if (Application.platform == RuntimePlatform.Android)
@@ -53,7 +54,7 @@ public class WordInput : MonoBehaviour
 
     public void CheckIfGameEnded()
     {
-        if (gameManager.gameHasEnded)
+        if (GameManager.gameHasEnded)
         {
             openKeyboardObject.SetActive(false);
             inputField.DeactivateInputField();
@@ -76,20 +77,20 @@ public class WordInput : MonoBehaviour
 
     public void CheckIfPowerupTriggered()
     {
-        if (inputField.text.ToLower() == "nuke" && !gameManager.playerProgress.nuke.isOnCooldown && SaveLoad.playerProgress.nuke.isUnlocked)
+        if (inputField.text.ToLower() == "nuke" && !SaveLoad.playerProgress.nuke.isOnCooldown && SaveLoad.playerProgress.nuke.isUnlocked)
         {
             gameManager.TriggerNuke();
             inputField.text = "";      
 
         }
 
-        if (inputField.text.ToLower() == "freeze" && !gameManager.playerProgress.freeze.isOnCooldown && SaveLoad.playerProgress.freeze.isUnlocked)
+        if (inputField.text.ToLower() == "freeze" && !SaveLoad.playerProgress.freeze.isOnCooldown && SaveLoad.playerProgress.freeze.isUnlocked)
         {
             gameManager.TriggerFreeze();
             inputField.text = "";      
         }
 
-        if (inputField.text.ToLower() == "slow" && !gameManager.playerProgress.slow.isOnCooldown)
+        if (inputField.text.ToLower() == "slow" && !SaveLoad.playerProgress.slow.isOnCooldown)
         {
             gameManager.TriggerSlow();
             inputField.text = "";      

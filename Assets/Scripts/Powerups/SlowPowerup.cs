@@ -14,7 +14,7 @@ public class SlowPowerup : Powerup
     {
         duration = 3;
         slowSpeed = 50;
-        cooldown = 45;
+        cooldown = 30;
     }
 
      public void Reset(Image cooldownImage)

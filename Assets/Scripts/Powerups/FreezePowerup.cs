@@ -10,11 +10,15 @@ public class FreezePowerup : Powerup
     public float timeLeftOver;
     public int duration;
 
+    public int unlockPrice;
+
     public FreezePowerup()
     {
         duration = 3;
         cooldown = 45;
         isUnlocked = false;
+
+        unlockPrice = 500;
     }
 
     public void Reset(Image cooldownImage)
@@ -22,7 +26,7 @@ public class FreezePowerup : Powerup
         cooldownImage.fillAmount = 0;
     }
 
-    public void Trigger(GameManager gameManager, float nextWordTime, Image cooldownImage)
+    public void Trigger(float nextWordTime, Image cooldownImage)
     {
         cooldownImage.fillAmount = 1;
         isOnCooldown = true;
@@ -31,14 +35,14 @@ public class FreezePowerup : Powerup
         timeLeftOver = nextWordTime - Time.time;
         startTime = Time.time;
 
-        gameManager.generate = false;
+        GameManager.generate = false;
     }
 
-    public void CheckIfComplete(GameManager gameManager, WordTimer wordTimer)
+    public void CheckIfComplete(WordTimer wordTimer)
     {
         if (isActive && Time.time > duration + startTime)
         {
-            gameManager.generate = true;
+            GameManager.generate = true;
             isActive = false;
             wordTimer.nextWordTime = Time.time + timeLeftOver;
         }

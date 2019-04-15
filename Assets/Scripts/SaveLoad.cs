@@ -11,18 +11,17 @@ public class SaveLoad
     public static void Save() 
     {
         BinaryFormatter bf = new BinaryFormatter();
-        Debug.Log(Application.persistentDataPath);
-        FileStream file = File.Create (Application.persistentDataPath + "/savedProgress.gd");
+        FileStream file = File.Create (Application.persistentDataPath + "/savedProgress.pb");
         bf.Serialize(file, SaveLoad.playerProgress);
         file.Close();
     }
 
     public static void Load() 
     {
-        if(File.Exists(Application.persistentDataPath + "/savedProgress.gd")) 
+        if(File.Exists(Application.persistentDataPath + "/savedProgress.pb")) 
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/savedProgress.gd", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/savedProgress.pb", FileMode.Open);
             SaveLoad.playerProgress = (PlayerProgress) bf.Deserialize(file);
             file.Close();
         }

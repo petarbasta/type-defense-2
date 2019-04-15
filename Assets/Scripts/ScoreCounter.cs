@@ -6,13 +6,8 @@ using TMPro;
 
 public class ScoreCounter : MonoBehaviour
 {
-    public int score = 0;
+    public static int score = 0;
     public TextMeshProUGUI scoreText;
-
-    void Start()
-    {
-        scoreText.text = "0";
-    }
 
     // Update is called once per frame
     public void UpdateScore(string word, float initialWordDelay)
