@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
 {
     public static string lastScene;
 
-    public float wordDelay = 1.50f;
-    public float fallSpeed;
+    public static float fallSpeed;
+    public static float wordDelay;
     public int waveIncrementer;
-    public int waveSize = 6;
+    public int waveSize = 7;
     public int numberSpawned = 0;
     public int numberCleared = 0;
     public static bool gameHasEnded = false;
@@ -69,14 +69,14 @@ public class GameManager : MonoBehaviour
 
         SaveLoad.playerProgress.nuke.CheckIfComplete();
         SaveLoad.playerProgress.freeze.CheckIfComplete(wordTimer);
-        SaveLoad.playerProgress.slow.CheckIfComplete();
+        SaveLoad.playerProgress.slow.CheckIfComplete(wordTimer);
     }
 
     public void EndGame()
     {
         if (!gameHasEnded)
         {   
-            goldEarned = 5 + ScoreCounter.score / 3500;
+            goldEarned = 5 + ScoreCounter.score / 2100;
             SaveLoad.playerProgress.gold += goldEarned;
             goldEarnedText.text = "+" + ((goldEarned).ToString("0,0,0")).TrimStart(new Char[] { '0' } );
             totalGoldText.text = "Total: " + (SaveLoad.playerProgress.gold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
 
     public void TriggerFreeze()
     {
-        SaveLoad.playerProgress.freeze.Trigger(wordTimer.nextWordTime, freezeCooldownImage);
+        SaveLoad.playerProgress.freeze.Trigger(wordTimer, freezeCooldownImage);
     }
 
     public void TriggerSlow()
@@ -163,7 +163,6 @@ public class GameManager : MonoBehaviour
         else
         {   
             gameOverMenu.SetActive(true);
-
         }
 
         goldEarnedText.text = "+" + ((goldEarned).ToString("0,0,0")).TrimStart(new Char[] { '0' } );
@@ -172,8 +171,9 @@ public class GameManager : MonoBehaviour
         scoreCounter.scoreText.text = "" + ScoreCounter.score;
         healthManager.healthText.text = "" + HealthManager.health;
 
-        waveIncrementer = 1;
+        waveIncrementer = 2;
         fallSpeed = 125;
+        wordDelay = 1.15f;
     }
 
     public void AddListeners()

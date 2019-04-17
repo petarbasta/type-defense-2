@@ -7,6 +7,7 @@ public class WordTimer : MonoBehaviour
     public WordManager wordManager;
     public WordGenerator wordGenerator;
     public GameManager gameManager;
+    public float lastWordSpawnedTime;
 
     public float nextWordTime = 0f;
 
@@ -19,9 +20,15 @@ public class WordTimer : MonoBehaviour
     {
         if (Time.time >= nextWordTime && wordGenerator.words[0].Length > 0 && GameManager.generate)
         {
+            lastWordSpawnedTime = Time.time;
             wordManager.AddWord();
-            nextWordTime = Time.time + gameManager.wordDelay;
-            gameManager.wordDelay *= .995f;
+            nextWordTime = Time.time + GameManager.wordDelay;
+                        Debug.Log(nextWordTime - Time.time);
+
+            if (GameManager.wordDelay > 0.1f)
+            {
+                GameManager.wordDelay *= 0.995f;
+            }
         }
     }
 }

@@ -53,9 +53,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Font.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HealthManager.cs" />
      <Compile Include="Assets\Scripts\PlayerProgress.cs" />
+     <Compile Include="Assets\Scripts\Powerups\BufferPowerups\BufferPowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\BufferPowerups\FreezeCooldownBufferPowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\BufferPowerups\FreezeDurationBufferPowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\BufferPowerups\NukeCooldownBufferPowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\BufferPowerups\SlowAmountBufferPowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\BufferPowerups\SlowCooldownBufferPowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\BufferPowerups\SlowDurationBufferPowerup.cs" />
      <Compile Include="Assets\Scripts\Powerups\FreezePowerup.cs" />
      <Compile Include="Assets\Scripts\Powerups\NukePowerup.cs" />
      <Compile Include="Assets\Scripts\Powerups\Powerup.cs" />
@@ -65,6 +73,7 @@
      <Compile Include="Assets\Scripts\ScoreCounter.cs" />
      <Compile Include="Assets\Scripts\StartScreenManager.cs" />
      <Compile Include="Assets\Scripts\StoreManager.cs" />
+     <Compile Include="Assets\Scripts\Upgrade.cs" />
      <Compile Include="Assets\Scripts\Word.cs" />
      <Compile Include="Assets\Scripts\WordDisplay.cs" />
      <Compile Include="Assets\Scripts\WordGenerator.cs" />

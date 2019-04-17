@@ -20,6 +20,7 @@ public class SaveLoad
     {
         if(File.Exists(Application.persistentDataPath + "/savedProgress.pb")) 
         {
+
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedProgress.pb", FileMode.Open);
             SaveLoad.playerProgress = (PlayerProgress) bf.Deserialize(file);

@@ -10,7 +10,7 @@ public class NukePowerup : Powerup
 
     public NukePowerup()
     {
-        cooldown = 45;
+        cooldown = 50;
         unlockPrice = 1000;
     }
 

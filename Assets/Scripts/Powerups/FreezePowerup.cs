@@ -8,7 +8,6 @@ public class FreezePowerup : Powerup
 {
     public float startTime;
     public float timeLeftOver;
-    public int duration;
 
     public int unlockPrice;
 
@@ -26,15 +25,20 @@ public class FreezePowerup : Powerup
         cooldownImage.fillAmount = 0;
     }
 
-    public void Trigger(float nextWordTime, Image cooldownImage)
+    public void Trigger(WordTimer wordTimer, Image cooldownImage)
     {
         cooldownImage.fillAmount = 1;
         isOnCooldown = true;
         isActive = true;
 
-        timeLeftOver = nextWordTime - Time.time;
-        startTime = Time.time;
+        if (SaveLoad.playerProgress.slow.isActive)
+        {
+            SaveLoad.playerProgress.slow.EndEarly();
+        }
+ 
+        wordTimer.nextWordTime = wordTimer.lastWordSpawnedTime + duration + GameManager.wordDelay;            
 
+        startTime = Time.time;
         GameManager.generate = false;
     }
 
@@ -44,7 +48,6 @@ public class FreezePowerup : Powerup
         {
             GameManager.generate = true;
             isActive = false;
-            wordTimer.nextWordTime = Time.time + timeLeftOver;
         }
     }
 

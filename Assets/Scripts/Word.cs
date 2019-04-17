@@ -9,11 +9,11 @@ public class Word
     public string word;
     WordDisplay display;
 
-    public Word (string _word, WordDisplay _display, float _initialWordDelay) 
+    public Word (string _word, WordDisplay _display) 
     {
         word = _word;
         display = _display;
-        display.SetWord(_word, _initialWordDelay);
+        display.SetWord(_word);
     }
 
     public void RemoveWord()

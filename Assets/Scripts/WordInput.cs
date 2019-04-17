@@ -90,7 +90,7 @@ public class WordInput : MonoBehaviour
             inputField.text = "";      
         }
 
-        if (inputField.text.ToLower() == "slow" && !SaveLoad.playerProgress.slow.isOnCooldown)
+        if (inputField.text.ToLower() == "slow" && !SaveLoad.playerProgress.slow.isOnCooldown && !SaveLoad.playerProgress.freeze.isActive)
         {
             gameManager.TriggerSlow();
             inputField.text = "";      

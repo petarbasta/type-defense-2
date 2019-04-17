@@ -28,10 +28,15 @@ public class StartScreenManager : MonoBehaviour
 
     public void LoadData()
     {
-        SaveLoad.Load();
         if (SaveLoad.playerProgress == null)
         {
-            SaveLoad.playerProgress = new PlayerProgress();
+            SaveLoad.Load();
+            //If first time playing
+            if (SaveLoad.playerProgress == null)
+            {   
+                SaveLoad.playerProgress = new PlayerProgress();
+                SaveLoad.Save();
+            }
         }
     }
 

@@ -23,10 +23,10 @@ public class WordDisplay : MonoBehaviour
     wordTimer = FindObjectOfType<WordTimer>();
   }
 
-  public void SetWord(string word, float _initialWordDelay)
+  public void SetWord(string word)
   {
     text.text = word;
-    initialWordDelay = _initialWordDelay;
+    initialWordDelay = GameManager.wordDelay;
   }
 
   public void RemoveWord()
@@ -59,11 +59,11 @@ public class WordDisplay : MonoBehaviour
       {
         if (!SaveLoad.playerProgress.slow.isActive)
         {
-          transform.Translate(0f, -gameManager.fallSpeed * Time.deltaTime, 0);
+          transform.Translate(0f, -GameManager.fallSpeed * Time.deltaTime, 0);
         }
         else
         {
-          transform.Translate(0f, -SaveLoad.playerProgress.slow.slowSpeed * Time.deltaTime, 0);
+          transform.Translate(0f, -SaveLoad.playerProgress.slow.amount * Time.deltaTime, 0);
         }
       }
     }
@@ -84,7 +84,10 @@ public class WordDisplay : MonoBehaviour
       gameManager.waveSize += gameManager.waveIncrementer;
       gameManager.numberSpawned = 0;
       gameManager.numberCleared = 0;
-      GameManager.generate = true;
+      if (!SaveLoad.playerProgress.freeze.isActive)
+      {
+        GameManager.generate = true;
+      }
       wordTimer.nextWordTime = Time.time + timeBetweenWaves;
     }
   }

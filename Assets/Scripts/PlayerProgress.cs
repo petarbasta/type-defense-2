@@ -17,6 +17,7 @@ public class PlayerProgress
     public PlayerProgress()
     {
         nuke = new NukePowerup();
+
         freeze = new FreezePowerup();
         slow = new SlowPowerup();
 
