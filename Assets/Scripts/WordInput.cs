@@ -117,7 +117,7 @@ public class WordInput : MonoBehaviour
             {
                 View.Call("getWindowVisibleDisplayFrame", Rct);
 
-                int currentKeyboardHeight = Screen.height - Rct.Call<int>("height");
+                int currentKeyboardHeight = (int) ((Screen.height - Rct.Call<int>("height"))*1.16);
 
                 if (currentKeyboardHeight > keyboardHeight)
                 {

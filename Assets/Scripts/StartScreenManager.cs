@@ -9,7 +9,6 @@ public class StartScreenManager : MonoBehaviour
     public Button playButton;
     public Button highscoresButton;
     public Button storeButton;
-    public Button optionsButton;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +22,6 @@ public class StartScreenManager : MonoBehaviour
         playButton.onClick.AddListener(Play);
         highscoresButton.onClick.AddListener(Highscores);
         storeButton.onClick.AddListener(Store);
-        optionsButton.onClick.AddListener(Options);
     }
 
     public void LoadData()
@@ -53,9 +51,5 @@ public class StartScreenManager : MonoBehaviour
     {
         GameManager.lastScene = "StartScreen";
         SceneManager.LoadScene("StoreScreen");
-    }
-
-    public void Options()
-    {
     }
 }

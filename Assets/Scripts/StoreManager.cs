@@ -17,6 +17,17 @@ public class StoreManager : MonoBehaviour
 
     public Button backButton;
 
+    public Image[] fontImages;
+
+    public void SetFontImages()
+    {
+        for (int i = 0; i < fontImages.Length; i++)
+        {
+            fontImages[i].color = new Color(0,0,0,0);
+        }
+        fontImages[SaveLoad.playerProgress.currentFont].color = new Color(0,0,0,0.4f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

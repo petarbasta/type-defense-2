@@ -421,13 +421,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17458bcd41517a478dd42baa8f46504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordDelay: 1.75
-  fallSpeed: 0
   waveIncrementer: 0
   waveSize: 6
   numberSpawned: 0
   numberCleared: 0
   removeAllWords: 0
+  fonts:
+  - {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 11400000, guid: 5d8c7c23f2abee24985a91ea97f75898, type: 2}
+  - {fileID: 11400000, guid: 90ba9ee9f2347264fac99be64c253ec7, type: 2}
+  - {fileID: 11400000, guid: 36c102bed6000dc47b053249fb91f0ab, type: 2}
+  - {fileID: 11400000, guid: f75149467c75dd04eb572b71b0a74bc1, type: 2}
+  - {fileID: 11400000, guid: 158166e1fe1862445b75ed0b39682913, type: 2}
+  - {fileID: 11400000, guid: 1e1e48f373a73514d9653d96b7795c29, type: 2}
+  - {fileID: 11400000, guid: c85245e92c51ffb439b4cb5140be7305, type: 2}
   lockSprite: {fileID: 21300000, guid: 82b79aee4c836c64083970b00b71b3ad, type: 3}
   nukeImage: {fileID: 526150730}
   nukeCooldownImage: {fileID: 849100982}
@@ -440,9 +447,17 @@ MonoBehaviour:
   slowText: {fileID: 1855057151}
   quit:
     cooldown: 0
+    duration: 0
+    amount: 0
     isOnCooldown: 0
     isActive: 0
     isUnlocked: 0
+    cooldownLevel: 0
+    durationLevel: 0
+    amountLevel: 0
+    cooldownPrice: 200
+    durationPrice: 200
+    amountPrice: 200
   restartButton: {fileID: 46148542}
   highscoresButton: {fileID: 840171890}
   storeButton: {fileID: 2145224382}
@@ -4276,6 +4291,7 @@ MonoBehaviour:
   wordManager: {fileID: 1848027004}
   wordGenerator: {fileID: 1848027006}
   gameManager: {fileID: 0}
+  lastWordSpawnedTime: 0
   nextWordTime: 0
 --- !u!114 &1855057151 stripped
 MonoBehaviour:

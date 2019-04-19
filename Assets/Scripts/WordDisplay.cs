@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WordDisplay : MonoBehaviour
 {
-  public Text text;
+  public TextMeshProUGUI text;
   public HealthManager healthManager;
   public GameManager gameManager;
   public ScoreCounter scoreCounter;
@@ -26,6 +27,7 @@ public class WordDisplay : MonoBehaviour
   public void SetWord(string word)
   {
     text.text = word;
+    text.font = GameManager.currentFont;
     initialWordDelay = GameManager.wordDelay;
   }
 
