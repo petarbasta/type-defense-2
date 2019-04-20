@@ -23,7 +23,6 @@ public class WordTimer : MonoBehaviour
             lastWordSpawnedTime = Time.time;
             wordManager.AddWord();
             nextWordTime = Time.time + GameManager.wordDelay;
-                        Debug.Log(nextWordTime - Time.time);
 
             if (GameManager.wordDelay > 0.1f)
             {

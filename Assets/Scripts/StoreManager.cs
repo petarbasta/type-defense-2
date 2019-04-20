@@ -18,6 +18,9 @@ public class StoreManager : MonoBehaviour
     public Button backButton;
 
     public Image[] fontImages;
+    public Image[] fontColorImages;
+    public Image[] backgroundImages;
+
 
     public void SetFontImages()
     {
@@ -28,9 +31,31 @@ public class StoreManager : MonoBehaviour
         fontImages[SaveLoad.playerProgress.currentFont].color = new Color(0,0,0,0.4f);
     }
 
+    public void SetFontColors()
+    {
+        for (int i = 0; i < fontColorImages.Length; i++)
+        {
+            fontColorImages[i].color = new Color(0,0,0,0);
+        }
+        fontColorImages[SaveLoad.playerProgress.currentFontColor].color = new Color(0,0,0,0.4f);
+    }
+
+    public void SetBackgroundImages()
+    {
+        for (int i = 0; i < backgroundImages.Length; i++)
+        {
+            backgroundImages[i].color = new Color(0,0,0,0);
+        }
+        backgroundImages[SaveLoad.playerProgress.currentBackground].color = new Color(0,0,0,0.4f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        SetFontImages();
+        SetFontColors();
+        SetBackgroundImages();
+
         AddListeners();
         CheckLockedObjects();
         goldText.text = "" + SaveLoad.playerProgress.gold;

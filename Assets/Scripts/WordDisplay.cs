@@ -28,6 +28,7 @@ public class WordDisplay : MonoBehaviour
   {
     text.text = word;
     text.font = GameManager.currentFont;
+    text.color = GameManager.currentFontColor;
     initialWordDelay = GameManager.wordDelay;
   }
 

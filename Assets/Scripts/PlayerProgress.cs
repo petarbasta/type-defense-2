@@ -10,17 +10,20 @@ public class PlayerProgress
     public SlowPowerup slow;
     
     public bool[] fontsUnlocked;
+    public bool[] backgroundsUnlocked;
 
     public int gold;
     public int highscore;
     public int totalScore;
     public int rank;
+
     public int currentFont;
+    public int currentFontColor;
+    public int currentBackground;
 
     public PlayerProgress()
     {
         nuke = new NukePowerup();
-
         freeze = new FreezePowerup();
         slow = new SlowPowerup();
 
@@ -30,7 +33,13 @@ public class PlayerProgress
         rank = 0;
         
         currentFont = 0;
+        currentFontColor = 0;
+        currentBackground = 0;
+
         fontsUnlocked = new bool[8];
         fontsUnlocked[0] = true;
+
+        backgroundsUnlocked = new bool[6];
+        backgroundsUnlocked[0] = true;
     }
 }

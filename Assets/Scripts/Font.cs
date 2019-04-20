@@ -12,7 +12,6 @@ public class Font : MonoBehaviour
     public StoreManager storeManager;
     public Sprite checkmarkSprite;
 
-    public Button purchaseOrSetFontButton;
     public TextMeshProUGUI purhcaseText;
     public Image coinImage;
 
@@ -20,7 +19,6 @@ public class Font : MonoBehaviour
     {
         price = 500;
         storeManager = FindObjectOfType<StoreManager>();
-        storeManager.SetFontImages();
 
         if (SaveLoad.playerProgress.fontsUnlocked[fontID])
         {

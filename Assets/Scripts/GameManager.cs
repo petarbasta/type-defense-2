@@ -21,8 +21,14 @@ public class GameManager : MonoBehaviour
     public bool removeAllWords = false;
     public static bool generate;
 
-    public TMPro.TMP_FontAsset[] fonts;
+    public TMP_FontAsset[] fonts;
     public static TMP_FontAsset currentFont;
+
+    public Color[] fontColors;
+    public static Color currentFontColor;
+    
+    public Sprite[] backgrounds;
+    public Image currentBackground;
 
     public Sprite lockSprite;
 
@@ -60,7 +66,6 @@ public class GameManager : MonoBehaviour
         FindObjects();
         AddListeners();
         InitializeVariables();
-        Debug.Log(currentFont);
         SaveLoad.playerProgress.nuke.CheckIfLocked(lockSprite, nukeImage);
         SaveLoad.playerProgress.freeze.CheckIfLocked(lockSprite, freezeImage);
     }
@@ -174,7 +179,10 @@ public class GameManager : MonoBehaviour
         highscoreText.text = "Highscore: " + SaveLoad.playerProgress.highscore.ToString("0,0,0");
         scoreCounter.scoreText.text = "" + ScoreCounter.score;
         healthManager.healthText.text = "" + HealthManager.health;
+
         currentFont = fonts[SaveLoad.playerProgress.currentFont];
+        currentFontColor = fontColors[SaveLoad.playerProgress.currentFontColor];
+        currentBackground.sprite = backgrounds[SaveLoad.playerProgress.currentBackground];
 
         waveIncrementer = 2;
         fallSpeed = 125;

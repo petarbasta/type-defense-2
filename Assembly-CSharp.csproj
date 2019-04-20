@@ -53,9 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Background.cs" />
      <Compile Include="Assets\Scripts\Font.cs" />
+     <Compile Include="Assets\Scripts\FontColor.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HealthManager.cs" />
+     <Compile Include="Assets\Scripts\Lock.cs" />
      <Compile Include="Assets\Scripts\PlayerProgress.cs" />
      <Compile Include="Assets\Scripts\Powerups\BufferPowerups\BufferPowerup.cs" />
      <Compile Include="Assets\Scripts\Powerups\BufferPowerups\FreezeCooldownBufferPowerup.cs" />
