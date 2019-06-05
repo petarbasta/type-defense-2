@@ -835,29 +835,42 @@ PrefabInstance:
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_text
-      value: 'Unlock at
-
-        Finish Line'
+      value: Unlock at 5000 career gold
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 21
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0d178906a57ac44b9ae47f62aa6616, type: 3}
@@ -4847,29 +4860,42 @@ PrefabInstance:
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_text
-      value: 'Unlock at
-
-        Silver V'
+      value: Unlock at 1000 career gold
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 18
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0d178906a57ac44b9ae47f62aa6616, type: 3}
@@ -5602,11 +5628,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetBackground
       objectReference: {fileID: 0}
-    - target: {fileID: 9035927342792852534, guid: 5a0d178906a57ac44b9ae47f62aa6616,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.54901963
-      objectReference: {fileID: 0}
     - target: {fileID: 8870102126414977973, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -5692,29 +5713,47 @@ PrefabInstance:
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_text
-      value: 'Unlock at
-
-        Wood V'
+      value: "Unlock at \n200 career \ngold"
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 16
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035927342792852534, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0d178906a57ac44b9ae47f62aa6616, type: 3}
@@ -6290,29 +6329,47 @@ PrefabInstance:
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_text
-      value: 'Unlock at
-
-        Bronze V'
+      value: "Unlock at \n500 career \ngold"
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 18
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0d178906a57ac44b9ae47f62aa6616, type: 3}
@@ -7975,29 +8032,42 @@ PrefabInstance:
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_text
-      value: 'Unlock at
-
-        Gold V'
+      value: Unlock at 2000 career gold
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 16
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0d178906a57ac44b9ae47f62aa6616, type: 3}
@@ -13334,11 +13404,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetBackground
       objectReference: {fileID: 0}
-    - target: {fileID: 9035927342792852534, guid: 5a0d178906a57ac44b9ae47f62aa6616,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.54901963
-      objectReference: {fileID: 0}
     - target: {fileID: 8870102126414977973, guid: 5a0d178906a57ac44b9ae47f62aa6616,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -13393,6 +13458,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_text
+      value: Initially Unlocked
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 433606594459230314, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035927342792852534, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033644903491893054, guid: 5a0d178906a57ac44b9ae47f62aa6616,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0d178906a57ac44b9ae47f62aa6616, type: 3}

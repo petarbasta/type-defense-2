@@ -13,9 +13,9 @@ public class PlayerProgress
     public bool[] backgroundsUnlocked;
 
     public int gold;
+    public int careerGold;
     public int highscore;
     public int totalScore;
-    public int rank;
 
     public int currentFont;
     public int currentFontColor;
@@ -27,10 +27,10 @@ public class PlayerProgress
         freeze = new FreezePowerup();
         slow = new SlowPowerup();
 
+        careerGold = 0;
         gold = 1000000;
         highscore = 0;
         totalScore = 0;
-        rank = 0;
         
         currentFont = 0;
         currentFontColor = 0;

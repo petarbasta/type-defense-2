@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI highscoreText;
     public TextMeshProUGUI goldEarnedText;
     public TextMeshProUGUI totalGoldText;
+    public TextMeshProUGUI careerGoldText;
 
     public GameObject gameOverMenu;
     public ScoreCounter scoreCounter;
@@ -86,9 +87,11 @@ public class GameManager : MonoBehaviour
         if (!gameHasEnded)
         {   
             goldEarned = 5 + ScoreCounter.score / 2100;
+            SaveLoad.playerProgress.careerGold += goldEarned;
             SaveLoad.playerProgress.gold += goldEarned;
             goldEarnedText.text = "+" + ((goldEarned).ToString("0,0,0")).TrimStart(new Char[] { '0' } );
-            totalGoldText.text = "Total: " + (SaveLoad.playerProgress.gold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
+            totalGoldText.text = "Gold: " + (SaveLoad.playerProgress.gold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
+            careerGoldText.text = "Career Gold: " + (SaveLoad.playerProgress.careerGold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
 
             if (ScoreCounter.score > SaveLoad.playerProgress.highscore)
             {
@@ -96,9 +99,35 @@ public class GameManager : MonoBehaviour
                 highscoreText.text = "Highscore: " + SaveLoad.playerProgress.highscore.ToString("0,0,0");
             }
 
+            unlockBackgrounds();
+
             SaveLoad.Save();
             ClearScreen();
             gameOverMenu.SetActive(true);
+        }
+    }
+
+    public void unlockBackgrounds()
+    {
+        if (SaveLoad.playerProgress.careerGold > 5000)
+        {
+            SaveLoad.playerProgress.backgroundsUnlocked[5] = true;
+        }
+        else if (SaveLoad.playerProgress.careerGold > 2000)
+        {
+            SaveLoad.playerProgress.backgroundsUnlocked[4] = true;
+        }
+        else if (SaveLoad.playerProgress.careerGold > 1000)
+        {
+            SaveLoad.playerProgress.backgroundsUnlocked[3] = true;
+        }
+        else if (SaveLoad.playerProgress.careerGold > 500)
+        {
+            SaveLoad.playerProgress.backgroundsUnlocked[2] = true;
+        }
+        else if (SaveLoad.playerProgress.careerGold > 200)
+        {
+            SaveLoad.playerProgress.backgroundsUnlocked[1] = true;
         }
     }
 
@@ -176,6 +205,8 @@ public class GameManager : MonoBehaviour
 
         goldEarnedText.text = "+" + ((goldEarned).ToString("0,0,0")).TrimStart(new Char[] { '0' } );
         totalGoldText.text = "Total: " + (SaveLoad.playerProgress.gold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
+        careerGoldText.text = "Career Gold: " + (SaveLoad.playerProgress.careerGold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
+
         highscoreText.text = "Highscore: " + SaveLoad.playerProgress.highscore.ToString("0,0,0");
         scoreCounter.scoreText.text = "" + ScoreCounter.score;
         healthManager.healthText.text = "" + HealthManager.health;
