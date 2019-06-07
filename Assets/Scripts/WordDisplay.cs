@@ -10,18 +10,18 @@ public class WordDisplay : MonoBehaviour
   public HealthManager healthManager;
   public GameManager gameManager;
   public ScoreCounter scoreCounter;
-  public WordTimer wordTimer;
+  public WordManager wordManager;
   
   public bool hasBeenTyped = false;
+  public bool hasTriggeredNextWord = false;
   public int timeBetweenWaves = 2;
-  public float initialWordDelay;
 
   public void Start()
   {
+    wordManager = FindObjectOfType<WordManager>();
     healthManager = FindObjectOfType<HealthManager>();
     gameManager = FindObjectOfType<GameManager>();
     scoreCounter = FindObjectOfType<ScoreCounter>();
-    wordTimer = FindObjectOfType<WordTimer>();
   }
 
   public void SetWord(string word)
@@ -29,7 +29,6 @@ public class WordDisplay : MonoBehaviour
     text.text = word;
     text.font = GameManager.currentFont;
     text.color = GameManager.currentFontColor;
-    initialWordDelay = GameManager.wordDelay;
   }
 
   public void RemoveWord()
@@ -37,11 +36,10 @@ public class WordDisplay : MonoBehaviour
     hasBeenTyped = true;
     WordCleared();
     healthManager.AddHealth(text.text.Length);
-    scoreCounter.UpdateScore(text.text, initialWordDelay);
+    scoreCounter.UpdateScore(text.text);
 
     text.color = Color.red;
     text.CrossFadeAlpha(0f, 1.0f, false);
-    Destroy(gameObject, 0.5f);
   }
 
   private void Update()
@@ -54,6 +52,20 @@ public class WordDisplay : MonoBehaviour
     if (gameManager.removeAllWords)
     {
       Destroy(gameObject);
+    }
+
+    if (gameObject.transform.position.y < gameManager.dropHeight && !hasTriggeredNextWord)
+    {
+      hasTriggeredNextWord = true;
+      if (GameManager.generate)
+      {
+        wordManager.AddWord();
+        
+        if (gameManager.dropHeight < Screen.height * 1.13f)
+        {
+          gameManager.dropHeight += (Screen.height*1.15f - gameManager.dropHeight) * 0.016f;
+        }
+      }
     }
     
     if (gameObject.transform.position.y > WordInput.keyboardHeight)
@@ -76,6 +88,10 @@ public class WordDisplay : MonoBehaviour
       WordCleared();
       Destroy(gameObject);
     }
+    else 
+    {
+      Destroy(gameObject);
+    }
   }
 
   private void WordCleared()
@@ -84,6 +100,8 @@ public class WordDisplay : MonoBehaviour
 
     if (gameManager.numberCleared == gameManager.waveSize)
     {
+      var currentTime = Time.time;
+
       gameManager.waveSize += gameManager.waveIncrementer;
       gameManager.numberSpawned = 0;
       gameManager.numberCleared = 0;
@@ -91,7 +109,10 @@ public class WordDisplay : MonoBehaviour
       {
         GameManager.generate = true;
       }
-      wordTimer.nextWordTime = Time.time + timeBetweenWaves;
+      GameManager.dropFrom = gameManager.dropHeight + 200f;
+      wordManager.AddWord();
+      GameManager.dropFrom = Screen.height * 1.15f;
+
     }
   }
 }

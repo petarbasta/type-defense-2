@@ -10,9 +10,9 @@ public class ScoreCounter : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     // Update is called once per frame
-    public void UpdateScore(string word, float initialWordDelay)
+    public void UpdateScore(string word)
     {
-        score += (int) ((float) word.Length * 4f * 1.0/initialWordDelay * 100f);
+        score += (int) ((float) word.Length * 348f + score * 0.03f);
         score = ((int) (score / 10)) * 10;
         scoreText.text = score.ToString("0,0,0");
     }

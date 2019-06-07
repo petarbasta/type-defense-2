@@ -11,15 +11,16 @@ public class GameManager : MonoBehaviour
     public static string lastScene;
 
     public static float fallSpeed;
-    public static float wordDelay;
     public int waveIncrementer;
-    public int waveSize = 7;
-    public int numberSpawned = 0;
-    public int numberCleared = 0;
+    public int waveSize;
+    public int numberSpawned;
+    public int numberCleared;
     public static bool gameHasEnded = false;
     public static int goldEarned;
     public bool removeAllWords = false;
     public static bool generate;
+    public float dropHeight;
+    public static float dropFrom;
 
     public TMP_FontAsset[] fonts;
     public static TMP_FontAsset currentFont;
@@ -59,8 +60,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverMenu;
     public ScoreCounter scoreCounter;
-    public WordTimer wordTimer;
     public HealthManager healthManager;
+    public WordManager wordManager;
 
     void Start()
     {   
@@ -78,15 +79,15 @@ public class GameManager : MonoBehaviour
         SaveLoad.playerProgress.slow.CheckCoolDown(slowCooldownImage);
 
         SaveLoad.playerProgress.nuke.CheckIfComplete();
-        SaveLoad.playerProgress.freeze.CheckIfComplete(wordTimer);
-        SaveLoad.playerProgress.slow.CheckIfComplete(wordTimer);
+        SaveLoad.playerProgress.freeze.CheckIfComplete();
+        SaveLoad.playerProgress.slow.CheckIfComplete();
     }
 
     public void EndGame()
     {
         if (!gameHasEnded)
         {   
-            goldEarned = 5 + ScoreCounter.score / 2100;
+            goldEarned = 5 + ScoreCounter.score / 1550;
             SaveLoad.playerProgress.careerGold += goldEarned;
             SaveLoad.playerProgress.gold += goldEarned;
             goldEarnedText.text = "+" + ((goldEarned).ToString("0,0,0")).TrimStart(new Char[] { '0' } );
@@ -180,7 +181,7 @@ public class GameManager : MonoBehaviour
 
     public void TriggerFreeze()
     {
-        SaveLoad.playerProgress.freeze.Trigger(wordTimer, freezeCooldownImage);
+        SaveLoad.playerProgress.freeze.Trigger(freezeCooldownImage);
     }
 
     public void TriggerSlow()
@@ -203,6 +204,12 @@ public class GameManager : MonoBehaviour
             gameOverMenu.SetActive(true);
         }
 
+        dropHeight = Screen.height;
+        dropFrom = Screen.height * 1.15f;
+        numberSpawned = 0;
+        numberCleared = 0;
+        waveSize = 7;
+        
         goldEarnedText.text = "+" + ((goldEarned).ToString("0,0,0")).TrimStart(new Char[] { '0' } );
         totalGoldText.text = "Total: " + (SaveLoad.playerProgress.gold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
         careerGoldText.text = "Career Gold: " + (SaveLoad.playerProgress.careerGold.ToString("0,0,0")).TrimStart(new Char[] { '0' } );
@@ -217,7 +224,6 @@ public class GameManager : MonoBehaviour
 
         waveIncrementer = 2;
         fallSpeed = 125;
-        wordDelay = 1.15f;
     }
 
     public void AddListeners()
@@ -232,7 +238,6 @@ public class GameManager : MonoBehaviour
     public void FindObjects()
     {
         scoreCounter = FindObjectOfType<ScoreCounter>();
-        wordTimer = FindObjectOfType<WordTimer>();
         healthManager = FindObjectOfType<HealthManager>();
     }
 }

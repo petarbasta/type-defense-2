@@ -64,7 +64,7 @@ public class Upgrade : MonoBehaviour
         if (SaveLoad.playerProgress.gold > bufferPowerup.price)
         {
             SaveLoad.playerProgress.gold -= bufferPowerup.price;
-            bufferPowerup.price *= 2;
+            bufferPowerup.price += 200;
             bufferPowerup.level++;
 
             storeManager.goldText.text = "" + SaveLoad.playerProgress.gold;

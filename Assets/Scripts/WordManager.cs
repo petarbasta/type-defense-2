@@ -8,12 +8,15 @@ public class WordManager : MonoBehaviour
     public List<Word> words;
     public WordSpawner wordSpawner;
     public WordGenerator wordGenerator;
-    public GameManager gameManager;
 
     public void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
-        wordGenerator.LoadAllWords();
+        wordGenerator = FindObjectOfType<WordGenerator>();
+
+        if (!GameManager.gameHasEnded)
+        {
+            AddWord();
+        }
     }
 
     public void AddWord()

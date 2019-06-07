@@ -15,7 +15,7 @@ public class WordGenerator : MonoBehaviour
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        LoadAllWords();
     }
 
     public string GetRandomWord()

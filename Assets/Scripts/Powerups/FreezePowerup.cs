@@ -25,7 +25,7 @@ public class FreezePowerup : Powerup
         cooldownImage.fillAmount = 0;
     }
 
-    public void Trigger(WordTimer wordTimer, Image cooldownImage)
+    public void Trigger(Image cooldownImage)
     {
         cooldownImage.fillAmount = 1;
         isOnCooldown = true;
@@ -36,18 +36,16 @@ public class FreezePowerup : Powerup
             SaveLoad.playerProgress.slow.EndEarly();
         }
  
-        wordTimer.nextWordTime = wordTimer.lastWordSpawnedTime + duration + GameManager.wordDelay;            
-
         startTime = Time.time;
         GameManager.generate = false;
     }
 
-    public void CheckIfComplete(WordTimer wordTimer)
+    public void CheckIfComplete()
     {
         if (isActive && Time.time > duration + startTime)
         {
-            GameManager.generate = true;
             isActive = false;
+            GameManager.generate = true;
         }
     }
 

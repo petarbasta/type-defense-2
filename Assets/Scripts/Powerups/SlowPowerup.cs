@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class SlowPowerup : Powerup
 {
     public float startTime;
-    public float holdWordDelay;
 
     public SlowPowerup()
     {
@@ -23,9 +22,6 @@ public class SlowPowerup : Powerup
 
     public void Trigger(Image cooldownImage)
     {
-        holdWordDelay = GameManager.wordDelay;
-        GameManager.wordDelay = GameManager.wordDelay * GameManager.fallSpeed/amount;
-
         cooldownImage.fillAmount = 1;
         isOnCooldown = true;
         isActive = true;
@@ -33,25 +29,16 @@ public class SlowPowerup : Powerup
         startTime = Time.time;
     }
 
-    public void CheckIfComplete(WordTimer wordTimer)
+    public void CheckIfComplete()
     {
         if (isActive && Time.time > duration + startTime && !SaveLoad.playerProgress.freeze.isActive)
         {
-            //Checks when to spawn next word
-            float timeUntilNextWord = wordTimer.nextWordTime - Time.time;
-            float percentFast = timeUntilNextWord/holdWordDelay;
-            float timeSpentSlow = holdWordDelay - timeUntilNextWord;
-            float percentSlow = timeSpentSlow/holdWordDelay;
-
-            wordTimer.nextWordTime = percentFast*holdWordDelay + percentSlow*GameManager.wordDelay;
-            GameManager.wordDelay = holdWordDelay;
             isActive = false;
         }
     }
 
     public void EndEarly()
     {
-        GameManager.wordDelay = holdWordDelay;
         isActive = false;
     }
 }
